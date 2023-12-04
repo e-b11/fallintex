@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey</title>
+</head>
+
+<body>
+  <h1>Survey</h1><br>
+  <form action="/submitSurvey" method="POST">
+    <!-- 1. Age -->
+    <label for="age">1. Enter your age:</label>
+    <input type="number" id="age" name="age" min="0" max="100" step="1" required autofocus>
+    <br><br>
+    <!-- 2. Gender -->
+    <label for="listGender">2. Select a Gender:</label>
+    <select name="gender" id="listGender" required>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Other">Other</option>
+    </select>
+    <br><br>
+    <!-- 3. Relationship -->
+    <label for="listRelationship">3. Select a Relationship Status:</label>
+    <select name="relationship" id="listRelationship" required>
+      <option value="Single">Single</option>
+      <option value="In a relationship">In a relationship</option>
+      <option value="Married">Married</option>
+      <option value="Divorced">Divorced</option>
+    </select>
+    <br><br>
+    <!-- 4. Occupation -->
+    <label for="listOccupation">4. Select an Occupation Status:</label>
+    <select name="occupation" id="listOccupation" required>
+      <option value="School Student">School Student</option>
+      <option value="University Student">University Student</option>
+      <option value="Unsalaried Worker">Unsalaried Worker</option>
+      <option value="Salaried Worker">Salaried Worker</option>
+      <option value="Retired">Retired</option>
+    </select><br><br>
+    <!-- 5. Organization Affiliation -->
+    <label>5. What type of organizations are you affiliated with?</label><br>
+    <input type="checkbox" name="affiliation" id="university" value="University">
+    <label for="university">University</label>
+    <input type="checkbox" name="affiliation" id="private" value="Private">
+    <label for="private">Private</label>
+    <input type="checkbox" name="affiliation" id="school" value="School">
+    <label for="school">School</label>
+    <input type="checkbox" name="affiliation" id="company" value="Company">
+    <label for="company">Company</label>
+    <br><br>
+    <!-- 6. Social Media Use -->
+    <label>6. Do you use Social Media?</label><br>
+    <input type="radio" name="socialMedia" id="yes">
+    <label for="yes">Yes</label>
+    <input type="radio" name="socialMedia" id="no">
+    <label for="no ">No</label>
+    <br><br>
+    <!-- 7. Platforms -->
+    <!-- 8. Average Time -->
+    <!-- 9. Purpose -->
+    <!-- 10. Distracted Busy-->
+    <!-- 11. Restless -->
+    <!-- 12. Easily Distracted -->
+    <!-- 13. Bothered Worries -->
+    <!-- 14. Concentration -->
+    <!-- 15. Compare -->
+    <!-- 16. Comparison Feelings -->
+    <!-- 17. Validation -->
+    <!-- 18. Depression -->
+    <!-- 19. Activity Interest -->
+    <!-- 20. Sleep -->
+
+
+
+
+  </form>
+</body>
+
+</html>

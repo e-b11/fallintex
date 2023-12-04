@@ -22,11 +22,61 @@ const knex = require("knex")({
     host: process.env.RDS_HOSTNAME || "localhost",
     user: process.env.RDS_USERNAME || "postgres",
     password: process.env.RDS_PASSWORD || "postgres",
-    database: process.env.RDS_DB_NAME || "music",
+    database: process.env.RDS_DB_NAME || "intex",
     port: process.env.RDS_PORT || 5432,
     ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false,
   },
 });
+
+app.get("/", (req, res) => {
+  res.render("landing");
+});
+
+app.get("/login", (req, res) => {
+  // knex
+  //   .select()
+  //   .from("authentication")
+  //   .then((authentication) => {
+  //     res.render("loginPage", { myauthentication: authentication });
+  //   });
+  res.render("loginPage");
+});
+
+app.post("/authenticate", (req, res) => {
+  knex
+    .select("username", "password")
+    .from("authentication")
+    .where("username", req.body.username)
+    .andWhere("password", req.body.password)
+    .then((authentication) => {
+      res.render("adminPage", { myauthentication: authentication });
+    });
+});
+
+// app.post("/authenticate", (req, res) => {
+//   let usernamesubmit = req.body.username;
+//   let passwordsubmit = req.body.password;
+
+// })
+
+app.get("/survey", (req, res) => {
+  res.render("surveyPage");
+});
+
+// app.post("/submitSurvey", (req, res) => {
+//   knex("survey")
+//     .insert({
+//       country_name: req.body.country_name.toUpperCase(),
+//       popular_site: req.body.popular_site.toUpperCase(),
+//       capital: req.body.capital.toUpperCase(),
+//       population: req.body.population,
+//       visited: req.body.visited ? "Y" : "N",
+//       covid_level: req.body.covid_level.toUpperCase(),
+//     })
+//     .then((mycountry) => {
+//       res.redirect("/");
+//     });
+// });
 
 // READ FUNCTIONALITY (to be changed)
 // app.get("/", (req, res) => {
