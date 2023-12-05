@@ -42,22 +42,24 @@ app.get("/login", (req, res) => {
   res.render("loginPage");
 });
 
-app.post("/authenticate", (req, res) => {
-  knex
-    .select("username", "password")
-    .from("authentication")
-    .where("username", req.body.username)
-    .andWhere("password", req.body.password)
-    .then((authentication) => {
-      res.render("adminPage", { myauthentication: authentication });
+app.post("/login", (req, res) => {
+  const { username, password } = req.body;
+
+  knex("authentication")
+    .where({ username, password })
+    .first()
+    .then((user) => {
+      if (user) {
+        res.render("adminPage");
+      } else {
+        res.status(401).send("Invalid username or password");
+      }
+    })
+    .catch((error) => {
+      console.error("Error querying database:", error);
+      res.status(500).send("Internal Server Error");
     });
 });
-
-// app.post("/authenticate", (req, res) => {
-//   let usernamesubmit = req.body.username;
-//   let passwordsubmit = req.body.password;
-
-// })
 
 app.get("/survey", (req, res) => {
   res.render("surveyPage");
