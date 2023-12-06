@@ -1,3 +1,6 @@
+// INTEX Social Media
+// Emma Bastian, Connor Humphrey, Johnny Fietkau, Lauren do Lago
+
 //Express package
 const express = require("express");
 
@@ -15,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 //Connect css file
 app.use(express.static(__dirname + "/public"));
 
-//Set up knex, will have to adjust database
+// Set up knex, will have to adjust database
 const knex = require("knex")({
   client: "pg",
   connection: {
@@ -77,6 +80,11 @@ app.post("/adminLogin", (req, res) => {
     .first()
     .then((user) => {
       if (user) {
+        res.cookie("username", username, { maxAge: 9000000, httpOnly: true }); //creates a cookie 'username' and assigns the value of the username
+        res.cookie("Access", "Granted", { maxAge: 9000000, httpOnly: true }); //creates a cookie that sets access privileges to granted
+
+        // populate the data for all admin users and send it to the admin page
+
         res.render("adminPage");
       } else {
         res.status(401).send("Invalid username or password");

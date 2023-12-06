@@ -4,11 +4,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin</title>
+  <title>Admin - Provo Mental Health</title>
+  <link rel="stylesheet" href="styles/style.css" type="text/css">
 </head>
 
 <body>
-  <h1>Admin</h1>
+
+  <header>
+    <a href="/">Home</a>
+    <a href="/survey">Take the Survey</a>
+    <a href="/adminLogin">Admin</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/">Admin</a>
+
+  </header>
+
+  <main>
+    <h1>Welcome Admin</h1>
+
+
+
+
+
+
+
+
+  </main>
+  <section class="cards">
+    <!-- <h2 class="sr-only, cards">Cards</h2> -->
+    <a href="#" class="card">
+      <img src="images/waffles-card-500px.jpg" alt="Waffles with raspberries" width="500" height="636" loading="lazy">
+      <p>Waffles</p>
+    </a>
+    <a href="#" class="card">
+      <img src="images/scones-card-500px.jpg" alt="Scones with jam and cream" width="500" height="636" loading="lazy">
+      <p>Scones</p>
+    </a>
+    <a href="#" class="card">
+      <img src="images/crepes-card-500px.jpg" alt="Crepes with whipped cream and fruit" width="500" height="636"
+        loading="lazy">
+      <p>Crêpes</p>
+    </a>
+    <a href="#" class="card">
+      <img src="images/oatmeal-card-500px.jpg" alt="Oatmeal with berries and nuts" width="500" height="636"
+        loading="lazy">
+      <p>Oatmeal</p>
+    </a>
+  </section>
+
+  <footer>
+    <p>&copy; Section 3-3 | All rights reserved</p>
+  </footer>
+  <script>
+    // JavaScript to handle header collapse on scroll
+    const header = document.querySelector('header');
+    let isHovered = false;
+
+    header.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+
+    header.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+
+    window.addEventListener('scroll', () => {
+      if (!isHovered) {
+        const scrollY = window.scrollY;
+        const maxPadding = 20; // Adjust as needed
+
+        // Collapse the header on scroll
+        header.style.padding = Math.max(maxPadding - scrollY, 5) + 'px';
+      }
+    });
+  </script>
 </body>
 
 </html>

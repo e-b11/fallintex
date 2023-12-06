@@ -65,3 +65,42 @@ footer {
   bottom: 0;
   width: 100%;
 }
+
+/* Cards */
+.sr-only {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.card p {
+  font-family: Playfair Display;
+}
+
+.card {
+  flex: 1 1 0;
+  padding: 0.6rem;
+  max-width: 1000px;
+  transition: background-color 300ms ease, font-weight 300ms ease;
+  text-decoration: none;
+  color: var(--misty-violet);
+  font-size: 1.5rem;
+}
+
+.card:hover {
+  background-color: rgb(0 0 0 / 10%);
+  font-weight: bold;
+}
