@@ -28,24 +28,47 @@ const knex = require("knex")({
   },
 });
 
+//Regular user routes
 app.get("/", (req, res) => {
   res.render("landing");
 });
 
-app.get("/login", (req, res) => {
-  // knex
-  //   .select()
-  //   .from("authentication")
-  //   .then((authentication) => {
-  //     res.render("loginPage", { myauthentication: authentication });
-  //   });
-  res.render("loginPage");
+app.get("/survey", (req, res) => {
+  res.render("surveyPage");
 });
 
-app.post("/login", (req, res) => {
+app.get("/userLogin", (req, res) => {
+  res.render("userLogin");
+});
+
+app.post("/userLogin", (req, res) => {
   const { username, password } = req.body;
 
-  knex("authentication")
+  knex("user")
+    .where({ username, password })
+    .first()
+    .then((user) => {
+      if (user) {
+        res.redirect("/");
+      } else {
+        res.status(401).send("Invalid username or password");
+      }
+    })
+    .catch((error) => {
+      console.error("Error querying database:", error);
+      res.status(500).send("Internal Server Error");
+    });
+});
+
+//Admin routes
+app.get("/adminLogin", (req, res) => {
+  res.render("adminLogin");
+});
+
+app.post("/adminLogin", (req, res) => {
+  const { username, password } = req.body;
+
+  knex("admin")
     .where({ username, password })
     .first()
     .then((user) => {
@@ -59,10 +82,6 @@ app.post("/login", (req, res) => {
       console.error("Error querying database:", error);
       res.status(500).send("Internal Server Error");
     });
-});
-
-app.get("/survey", (req, res) => {
-  res.render("surveyPage");
 });
 
 // app.post("/submitSurvey", (req, res) => {
