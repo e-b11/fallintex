@@ -1,20 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stylish Landing Page</title>
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
-
 <body>
-  <nav>
-    <a href="">Home</a>
-    <a href="/login">Login</a>
-    <a href="/survey">Survey</a>
-  </nav>
 
-  <h1>Welcome to the Landing Page</h1>
+    <header>
+        <a href="#">Home</a>
+        <a href="#">Take the Survey</a>
+        <a href="#">Login</a>
+    </header>
+
+    <main>
+        <h1>Welcome to the Provo City Mental Health Survey</h1>
+        <img src="brain.png" alt="brain">
+    </main>
+
+    <footer>
+        <p>&copy; Section 3-3 | All rights reserved</p>
+    </footer>
+    <script>
+        // JavaScript to handle header collapse on scroll
+        const header = document.querySelector('header');
+        let isHovered = false;
+    
+        header.addEventListener('mouseenter', () => {
+            isHovered = true;
+        });
+    
+        header.addEventListener('mouseleave', () => {
+            isHovered = false;
+        });
+    
+        window.addEventListener('scroll', () => {
+            if (!isHovered) {
+                const scrollY = window.scrollY;
+                const maxPadding = 20; // Adjust as needed
+    
+                // Collapse the header on scroll
+                header.style.padding = Math.max(maxPadding - scrollY, 5) + 'px';
+            }
+        });
+    </script>
 </body>
-
 </html>
