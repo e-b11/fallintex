@@ -37,28 +37,32 @@ app.get("/survey", (req, res) => {
   res.render("surveyPage");
 });
 
-app.get("/userLogin", (req, res) => {
-  res.render("userLogin");
+app.get("/dashboard", (req, res) => {
+  res.render("dashboardPage");
 });
 
-app.post("/userLogin", (req, res) => {
-  const { username, password } = req.body;
+// app.get("/userLogin", (req, res) => {
+//   res.render("userLogin");
+// });
 
-  knex("user")
-    .where({ username, password })
-    .first()
-    .then((user) => {
-      if (user) {
-        res.redirect("/");
-      } else {
-        res.status(401).send("Invalid username or password");
-      }
-    })
-    .catch((error) => {
-      console.error("Error querying database:", error);
-      res.status(500).send("Internal Server Error");
-    });
-});
+// app.post("/userLogin", (req, res) => {
+//   const { username, password } = req.body;
+
+//   knex("user")
+//     .where({ username, password })
+//     .first()
+//     .then((user) => {
+//       if (user) {
+//         res.redirect("/");
+//       } else {
+//         res.status(401).send("Invalid username or password");
+//       }
+//     })
+//     .catch((error) => {
+//       console.error("Error querying database:", error);
+//       res.status(500).send("Internal Server Error");
+//     });
+// });
 
 //Admin routes
 app.get("/adminLogin", (req, res) => {

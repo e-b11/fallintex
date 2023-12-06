@@ -5,22 +5,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
-  <h1>Admin Login</h1>
-  <form action="/adminLogin" method="POST">
-    <label for="username">Username:</label>
-    <input type="text" name="username" id="username">
-    <br><br>
-    <label for="password">Password:</label>
-    <input type="text" name="password" id="password">
-    <br><br>
-    <button type="submit">Login</button>
-  </form>
 
+  <header>
+    <a href="/">Home</a>
+    <a href="/survey">Take the Survey</a>
+    <a href="/adminLogin">Admin</a>
+  </header>
 
+  <main>
+    <form action="/adminLogin" method="POST">
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username">
+      <br><br>
+      <label for="password">Password:</label>
+      <input type="text" name="password" id="password">
+      <br><br>
+      <button type="submit">Login</button>
+    </form>
+  </main>
 
+  <footer>
+    <p>&copy; Section 3-3 | All rights reserved</p>
+  </footer>
+  <script>
+    // JavaScript to handle header collapse on scroll
+    const header = document.querySelector('header');
+    let isHovered = false;
+
+    header.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+
+    header.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+
+    window.addEventListener('scroll', () => {
+      if (!isHovered) {
+        const scrollY = window.scrollY;
+        const maxPadding = 20; // Adjust as needed
+
+        // Collapse the header on scroll
+        header.style.padding = Math.max(maxPadding - scrollY, 5) + 'px';
+      }
+    });
+  </script>
 </body>
 
 </html>
