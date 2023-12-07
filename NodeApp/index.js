@@ -28,7 +28,7 @@ const knex = require("knex")({
   connection: {
     host: process.env.RDS_HOSTNAME || "localhost",
     user: process.env.RDS_USERNAME || "postgres",
-    password: process.env.RDS_PASSWORD || "postgres",
+    password: process.env.RDS_PASSWORD || "password",
     database: process.env.RDS_DB_NAME || "intex",
     port: process.env.RDS_PORT || 5432,
     ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false,
@@ -153,6 +153,27 @@ app.get("/searchresponse", (req, res) => {
       });
   } else {
     res.send("You do not have access to this page");
+  }
+});
+
+
+
+app.get("/viewadmins", (req, res) => {
+
+  if(req.cookies.access == 'granted'){
+    knex.select('username','password').from('admin')
+    .then((adminData) => {
+      const pageuser = req.cookies.username;
+      // Render the 'viewsurveys' EJS file and pass the adminData to it
+      res.render("viewadmins", { adminData, pageuser });
+    })
+    .catch((error) => {
+      console.error("Error querying database:", error);
+      res.status(500).send("Internal Server Error");
+    });
+  }
+  else{
+    res.send("You do not have access to this page.")
   }
 });
 // app.post("/submitSurvey", (req, res) => {
