@@ -90,7 +90,8 @@ app.get("/viewsurveys", (req, res) => {
         "gender",
         "rel_status",
         "occ_status",
-        "avg_time_social"
+        "avg_time_social",
+        "origin"
       )
       .from("responses").limit(30)
       .then((surveyData) => {
@@ -125,7 +126,8 @@ app.get("/searchresponse", (req, res) => {
           "gender",
           "rel_status",
           "occ_status",
-          "avg_time_social"
+          "avg_time_social",
+          "origin"
         )
         .from("responses")
         .where(cat, val).limit(limit);
@@ -138,7 +140,8 @@ app.get("/searchresponse", (req, res) => {
           "gender",
           "rel_status",
           "occ_status",
-          "avg_time_social"
+          "avg_time_social",
+          "origin"
         )
         .from("responses")
         .where(cat, "like", `%${val}%`).limit(limit);
@@ -176,6 +179,39 @@ app.get("/viewadmins", (req, res) => {
     res.send("You do not have access to this page.");
   }
 });
+
+
+// DELETE FUNCTIONALITY
+app.post("/deleteadmin/:username", (req, res) => {
+  knex("admin").where("username", req.params.username).del().then(myadmins => {
+      res.redirect("/viewadmins");
+  }).catch(err => {
+      console.log(err);
+      res.status(500).json({err});
+  })
+});
+
+//CREATE FUNCTIONALITY (to be changed)
+app.post("/createadmin", (req, res) => {
+  const uname = req.body.adminname
+  const apassword = req.body.adminpassword
+  knex.raw('INSERT INTO admin (username, password) VALUES (?, ?)',[uname,apassword])
+  .then((result) => {
+    console.log(result);
+    res.redirect("/viewadmins");
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send("Error creating admin");
+  });
+});
+
+
+
+
+
+
+
 // app.post("/submitSurvey", (req, res) => {
 //   knex("survey")
 //     .insert({
@@ -215,22 +251,8 @@ app.get("/viewadmins", (req, res) => {
 //   });
 // });
 
-//CREATE FUNCTIONALITY (to be changed)
-// app.post("/addBand", (req, res) => {
-//   knex("bands").insert(req.body).then(mybands => {
-//       res.redirect("/");
-//   })
-// });
 
-//DELETE FUNCTIONALITY
-// app.post("/deleteBand/:id", (req, res) => {
-//   knex("bands").where("band_id", req.params.id).del().then(mybands => {
-//       res.redirect("/");
-//   }).catch(err => {
-//       console.log(err);
-//       res.status(500).json({err});
-//   })
-// });
+
 
 //Set up port/listening
 app.listen(port, () => console.log("Website started."));
