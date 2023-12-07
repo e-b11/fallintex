@@ -19,45 +19,39 @@
   </header>
 
   <main>
-    <h1>Welcome <%= pageuser %></h1>
-    <br>
-    <p>Create User</p>
-    <form action="/createadmin" method="POST">
-        <label for="adminname">Username</label>
-        <input type="text" id="adminname" name="adminname">
-        <label for="adminpassword">Password</label>
-        <input type="text" id="adminpassword" name="adminpassword">
-        <button type="submit">Create</button>
-    </form>
-    <br>
-    <thead>
-        <tr>
-            <td>Username</td>
-            <td>Password</td>
-            <td>Edit</td>
-            <td>Delete User</td>
+    <h1>Edit User</h1>
 
-        </tr>
-    </thead>
+
     <br>
     <tbody>
-        <% for(let icount = 0; icount< adminData.length; icount++) { %>
-            <tr>
-            <td><%= adminData[icount].username %></td>
-            <td><%= adminData[icount].password %></td>
-            <td>
-                <form action="/editadmin/<%= adminData[icount].username %>" method="GET">
-                    <button type="submit">Edit</button>
-                  </form>
-              </td>
-              <td>
-                <form action="/deleteadmin/<%= adminData[icount].username %>" method="POST">
-                  <button type="submit">Delete</button>
+
+                <form action="/editadmin" method="POST">
+
+                    <tr>
+                                
+                        <td><span id="username" name="username"><%= adminresult[0].username %></span></td>
+                        <td><%= adminresult[0].password %></td>
+                        <br><br>
+
+                    
+                    <!-- <td>
+
+                    <label for="username">Old Username</label>
+                    <input type="text" id="username" name="username">
+                    </td> -->
+                    <td>
+                    <label for="newusername">New Username</label>
+                    <input type="text" id="newusername" name="newusername">
+                    </td>
+                    <td>
+                    <label for="newpassword">New Password</label>
+                    <input type="text" id="newpassword" name="newpassword"> 
+                    </td>
+                    <button type="submit">Update</button>
                 </form>
               </td>
             </tr>
             <br>
-          <% }; %>
     </tbody>
 
   </main>
