@@ -202,7 +202,8 @@ app.get("/viewsurveys", (req, res) => {
         "gender",
         "rel_status",
         "occ_status",
-        "avg_time_social"
+        "avg_time_social",
+        "origin"
       )
       .from("responses")
       .limit(30)
@@ -238,7 +239,8 @@ app.get("/searchresponse", (req, res) => {
           "gender",
           "rel_status",
           "occ_status",
-          "avg_time_social"
+          "avg_time_social",
+          "origin"
         )
         .from("responses")
         .where(cat, val)
@@ -252,7 +254,8 @@ app.get("/searchresponse", (req, res) => {
           "gender",
           "rel_status",
           "occ_status",
-          "avg_time_social"
+          "avg_time_social",
+          "origin"
         )
         .from("responses")
         .where(cat, "like", `%${val}%`)
@@ -323,7 +326,6 @@ app.post("/createadmin", (req, res) => {
       res.status(500).send("Error creating admin");
     });
 });
-
 app.get("/editadmin/:username", (req, res) => {
   if (req.cookies.access == "granted") {
     const username = req.params.username;

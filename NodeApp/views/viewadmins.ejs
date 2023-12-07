@@ -22,11 +22,12 @@
     <h1>Welcome <%= pageuser %></h1>
     <br>
     <p>Create User</p>
-    <form action="" method="get">
+    <form action="/createadmin" method="POST">
         <label for="adminname">Username</label>
         <input type="text" id="adminname" name="adminname">
-        <label for="adminpassword">Username</label>
+        <label for="adminpassword">Password</label>
         <input type="text" id="adminpassword" name="adminpassword">
+        <button type="submit">Create</button>
     </form>
     <br>
     <thead>
@@ -45,12 +46,12 @@
             <tr>
             <td><%= adminData[icount].username %></td>
             <td><%= adminData[icount].password %></td>
-            <td style="text-align: center;">
+            <td>
                 <form action="/editadmin/<%= adminData[icount].username %>" method="GET">
                   <button type="submit">Edit</button>
                 </form>
               </td>
-              <td style="text-align: center;">
+              <td>
                 <form action="/deleteadmin/<%= adminData[icount].username %>" method="POST">
                   <button type="submit">Delete</button>
                 </form>

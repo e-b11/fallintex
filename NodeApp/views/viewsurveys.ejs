@@ -38,6 +38,8 @@
           <option value="rel_status">Relationship Status</option>
           <option value="occ_status">Occupation Status</option>
           <option value="avg_time_social">Avg Time - Social Media</option>
+          <option value="origin">Origin</option>
+
         </select>
       <span>Value to search for: </span>
       <input type="text" id="value" name="value">
@@ -53,6 +55,8 @@
         <th>Relationship Status</th>
         <th>Occupation Status</th>
         <th>Avg Time - Social Media</th>
+        <th>Origin</th>
+
       </tr>
       <br>
     </thead>
@@ -76,6 +80,9 @@
           </td>
           <td>
             <%= surveyData[index].avg_time_social %>
+          </td>
+          <td>
+            <%= surveyData[index].origin %>
           </td>
         </tr>
         <br>
