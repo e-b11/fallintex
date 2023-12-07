@@ -5,246 +5,322 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Survey</title>
-  <link rel="stylesheet" href="/styles/style.css" type="text/css">
+  <!-- <link rel="stylesheet" href="/styles/style.css" type="text/css"> -->
   <link rel="stylesheet" href="styles/main.css" type="text/css">
+  <link rel="stylesheet" href="styles/survey.css" type="text/css">
 </head>
 
 <body>
-  <h1>Survey</h1>
-  <form action="/submitSurvey" method="POST">
-    <h3>The first portion of this survey is to discover how you use social media.</h3>
-    <!-- 1. Age -->
-    <label for="age">1. Enter your age:</label>
-    <input type="number" id="age" name="age" min="0" max="100" step="1" required autofocus>
-    <br><br>
-    <!-- 2. Gender -->
-    <label for="listGender">2. Select a Gender:</label>
-    <select name="gender" id="listGender" required>
-      <option value="Male">Male</option>
-      <option value="Female">Female</option>
-      <option value="Other">Other</option>
-    </select>
-    <br><br>
-    <!-- 3. Relationship -->
-    <label for="listRelationship">3. Select a Relationship Status:</label>
-    <select name="relationship" id="listRelationship" required>
-      <option value="Single">Single</option>
-      <option value="In a relationship">In a relationship</option>
-      <option value="Married">Married</option>
-      <option value="Divorced">Divorced</option>
-    </select>
-    <br><br>
-    <!-- 4. Occupation -->
-    <label for="listOccupation">4. Select an Occupation Status:</label>
-    <select name="occupation" id="listOccupation" required>
-      <option value="School Student">School Student</option>
-      <option value="University Student">University Student</option>
-      <option value="Unsalaried Worker">Unsalaried Worker</option>
-      <option value="Salaried Worker">Salaried Worker</option>
-      <option value="Retired">Retired</option>
-    </select><br><br>
-    <!-- 5. Organization Affiliation -->
-    <label>5. What type of organizations are you affiliated with?</label><br>
-    <input type="checkbox" name="affiliation" id="school" value="School">
-    <label for="school">School</label>
-    <input type="checkbox" name="affiliation" id="university" value="University">
-    <label for="university">University</label>
-    <input type="checkbox" name="affiliation" id="private" value="Private">
-    <label for="private">Private</label>
-    <input type="checkbox" name="affiliation" id="company" value="Company">
-    <label for="company">Company</label>
-    <input type="checkbox" name="affiliation" id="government" value="Government">
-    <label for="government">Government</label>
-    <br><br>
-    <!-- 6. Social Media Use -->
-    <label>6. Do you use Social Media?</label><br>
-    <input type="radio" name="socialMedia" id="yes">
-    <label for="yes">Yes</label>
-    <input type="radio" name="socialMedia" id="no">
-    <label for="no ">No</label>
-    <br><br>
-    <!-- 7. Platforms -->
-    <label>7. What social media platforms do you commonly use?</label><br>
-    <input type="checkbox" name="platform" id="facebook" value="Facebook">
-    <label for="facebook">Facebook</label>
-    <input type="checkbox" name="platform" id="twitter" value="Twitter">
-    <label for="twitter">Twitter</label>
-    <input type="checkbox" name="platform" id="instagram" value="Instagram">
-    <label for="instagram">Instagram</label>
-    <input type="checkbox" name="platform" id="youtube" value="YouTube">
-    <label for="youtube">YouTube</label>
-    <input type="checkbox" name="platform" id="discord" value="Discord">
-    <label for="discord">Discord</label>
-    <input type="checkbox" name="platform" id="reddit" value="Reddit">
-    <label for="reddit">Reddit</label>
-    <input type="checkbox" name="platform" id="pinterest" value="Pinterest">
-    <label for="pinterest">Pinterest</label>
-    <input type="checkbox" name="platform" id="tiktok" value="TikTok">
-    <label for="tiktok">TikTok</label>
-    <input type="checkbox" name="platform" id="snapchat" value="Snapchat">
-    <label for="snapchat">Snapchat</label>
-    <br><br>
-    <!-- 8. Average Time -->
-    <label for="listTime">8. What is the average time you spend on social media every day?</label>
-    <select name="averageTime" id="listTime" required>
-      <option value="Less than an Hour">Less than an Hour</option>
-      <option value="Between 1 and 2 hours">Between 1 and 2 hours</option>
-      <option value="Between 2 and 3 hours">Between 2 and 3 hours</option>
-      <option value="Between 3 and 4 hours">Between 3 and 4 hours</option>
-      <option value="Between 4 and 5 hours">Between 4 and 5 hours</option>
-      <option value="More than 5 hours">More than 5 hours</option>
-    </select><br><br>
-    <h3>For the following questions, please rate from 1 to 5 with 1 being very low and 5 being very high.</h3>
-    <!-- 9. Purpose -->
-    <label for="purpose">9. How often do you find yourself using social media without a specific purpose?</label><br />
-    <input type="range" id="purpose" name="purpose" list="values9" min="1" max="5" step="1" />
-    <datalist id="values9">
-      <option value="1" label="1"></option>
-      <option value="2" label="2"></option>
-      <option value="3" label="3"></option>
-      <option value="4" label="4"></option>
-      <option value="5" label="5"></option>
-    </datalist>
-    <br><br>
-    <!-- 10. Distracted Busy-->
-    <label for="distractedBusy">10. How often do you get distracted by social media when you are busy doing something?
-    </label><br />
-    <input type="range" id="distractedBusy" name="distractedBusy" list="values10" min="1" max="5" step="1" />
-    <datalist id="values10">
-      <option value="1" label="1"></option>
-      <option value="2" label="2"></option>
-      <option value="3" label="3"></option>
-      <option value="4" label="4"></option>
-      <option value="5" label="5"></option>
-    </datalist>
-    <br><br>
-    <!-- 11. Restless -->
-    <label for="restless">11. Do you feel restless if you haven’t used social media in a while?</label><br />
-    <input type="range" id="restless" name="restless" list="values11" min="1" max="5" step="1" />
-    <datalist id="values11">
-      <option value="1" label="1"></option>
-      <option value="2" label="2"></option>
-      <option value="3" label="3"></option>
-      <option value="4" label="4"></option>
-      <option value="5" label="5"></option>
-    </datalist>
-    <br><br>
-    <!-- 12. Easily Distracted -->
-    <label for="easilyDistracted">12. How easily distracted are you?</label><br />
-    <input type="range" id="easilyDistracted" name="easilyDistracted" list="values12" min="1" max="5" step="1" />
-    <datalist id="values12">
-      <option value="1" label="1"></option>
-      <option value="2" label="2"></option>
-      <option value="3" label="3"></option>
-      <option value="4" label="4"></option>
-      <option value="5" label="5"></option>
-    </datalist>
-    <br><br>
-    <!-- 13. Bothered Worries -->
-    <label for="botheredWorries">13. How much are you bothered by worries?</label><br />
-    <input type="range" id="botheredWorries" name="botheredWorries" list="values13" min="1" max="5" step="1" />
-    <datalist id="values13">
-      <option value="1" label="1"></option>
-      <option value="2" label="2"></option>
-      <option value="3" label="3"></option>
-      <option value="4" label="4"></option>
-      <option value="5" label="5"></option>
-    </datalist>
-    <br><br>
-    <!-- 14. Concentration -->
-    <label for="concentration">14. Do you find it difficult to concentrate on things?</label><br />
-    <input type="range" id="concentration" name="concentration" list="values14" min="1" max="5" step="1" />
-    <datalist id="values14">
-      <option value="1" label="1"></option>
-      <option value="2" label="2"></option>
-      <option value="3" label="3"></option>
-      <option value="4" label="4"></option>
-      <option value="5" label="5"></option>
-    </datalist>
-    <br><br>
-    <!-- 15. Compare -->
-    <label for="compare">15. How often do you compare yourself to other successful people through the use of social
-      media?
-    </label><br />
-    <input type="range" id="compare" name="compare" list="values15" min="1" max="5" step="1" />
-    <datalist id="values15">
-      <option value="1" label="1"></option>
-      <option value="2" label="2"></option>
-      <option value="3" label="3"></option>
-      <option value="4" label="4"></option>
-      <option value="5" label="5"></option>
-    </datalist>
-    <br><br>
-    <!-- 16. Comparison Feelings -->
-    <label for="comparisonFeelings">16. Following the previous question, how do you feel about these comparisons,
-      generally
-      speaking?
-    </label><br />
-    <input type="range" id="comparisonFeelings" name="purpose" list="values16" min="1" max="5" step="1" />
-    <datalist id="values16">
-      <option value="1" label="1"></option>
-      <option value="2" label="2"></option>
-      <option value="3" label="3"></option>
-      <option value="4" label="4"></option>
-      <option value="5" label="5"></option>
-    </datalist>
-    <br><br>
-    <!-- 17. Validation -->
-    <label for="validation">17. How often do you look to seek validation from features of social media?</label><br />
-    <input type="range" id="validation" name="validation" list="values17" min="1" max="5" step="1" />
-    <datalist id="values17">
-      <option value="1" label="1"></option>
-      <option value="2" label="2"></option>
-      <option value="3" label="3"></option>
-      <option value="4" label="4"></option>
-      <option value="5" label="5"></option>
-    </datalist>
-    <br><br>
-    <!-- 18. Depression -->
-    <label for="depression">18. How often do you feel depressed or down?</label><br />
-    <input type="range" id="depression" name="depression" list="values18" min="1" max="5" step="1" />
-    <datalist id="values18">
-      <option value="1" label="1"></option>
-      <option value="2" label="2"></option>
-      <option value="3" label="3"></option>
-      <option value="4" label="4"></option>
-      <option value="5" label="5"></option>
-    </datalist>
-    <br><br>
-    <!-- 19. Activity Interest -->
-    <label for="activityInterest">19. How frequently does your interested in daily activities fluctuate?
-    </label><br />
-    <input type="range" id="activityInterest" name="purpose" list="values19" min="1" max="5" step="1" />
-    <datalist id="values19">
-      <option value="1" label="1"></option>
-      <option value="2" label="2"></option>
-      <option value="3" label="3"></option>
-      <option value="4" label="4"></option>
-      <option value="5" label="5"></option>
-    </datalist>
-    <br><br>
-    <!-- 20. Sleep -->
-    <label for="sleep">20. How often do you face issues regarding sleep?</label><br />
-    <input type="range" id="sleep" name="sleep" list="values20" min="1" max="5" step="1" />
-    <datalist id="values20">
-      <option value="1" label="1"></option>
-      <option value="2" label="2"></option>
-      <option value="3" label="3"></option>
-      <option value="4" label="4"></option>
-      <option value="5" label="5"></option>
-    </datalist>
-    <br><br>
+  <header>
+    <div class="menu-icon">
+      <svg viewbox="0 0 60 60" width="40px" height="40px">
+        <line x1="5%" y1="50%" x2="95%" y2="50%" />
+        <line x1="5%" y1="50%" x2="95%" y2="50%" />
+      </svg>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="#">SURVEY</a></li>
+        <li><a href="/adminLogin">ADMIN</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <button type="submit">Submit</button>
+  <main class=".survey">
+
+    <form action="/submitSurvey" method="POST">
+      <h1>Survey</h1>
+      <h3>The first portion of this survey is to discover how you use social media.</h3>
+      <!-- 1. Age -->
+      <div>
+        <label for="age">1. Enter your age:</label>
+        <input type="number" id="age" name="age" min="0" max="100" step="1" required autofocus>
+      </div>
+      <!-- 2. Gender -->
+      <div>
+        <label for="listGender">2. Select a Gender:</label>
+        <select name="gender" id="listGender" required>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <!-- 3. Relationship -->
+      <div>
+        <label for="listRelationship">3. Select a Relationship Status:</label>
+        <select name="relationship" id="listRelationship" required>
+          <option value="Single">Single</option>
+          <option value="In a relationship">In a relationship</option>
+          <option value="Married">Married</option>
+          <option value="Divorced">Divorced</option>
+        </select>
+      </div>
+      <!-- 4. Occupation -->
+      <div>
+        <label for="listOccupation">4. Select an Occupation Status:</label>
+        <select name="occupation" id="listOccupation" required>
+          <option value="School Student">School Student</option>
+          <option value="University Student">University Student</option>
+          <option value="Unsalaried Worker">Unsalaried Worker</option>
+          <option value="Salaried Worker">Salaried Worker</option>
+          <option value="Retired">Retired</option>
+        </select>
+      </div>
+      <!-- 5. Organization Affiliation -->
+      <div>
+        <label>5. What type of organizations are you affiliated with?</label><br>
+        <input type="checkbox" name="affiliation" id="school" value="School">
+        <label for="school">School</label>
+        <input type="checkbox" name="affiliation" id="university" value="University">
+        <label for="university">University</label>
+        <input type="checkbox" name="affiliation" id="private" value="Private">
+        <label for="private">Private</label>
+        <input type="checkbox" name="affiliation" id="company" value="Company">
+        <label for="company">Company</label>
+        <input type="checkbox" name="affiliation" id="government" value="Government">
+        <label for="government">Government</label>
+      </div>
+      <!-- 6. Social Media Use -->
+      <div>
+        <label>6. Do you use Social Media?</label><br>
+        <input type="radio" name="socialMedia" id="yes">
+        <label for="yes">Yes</label>
+        <input type="radio" name="socialMedia" id="no">
+        <label for="no ">No</label>
+      </div>
+      <!-- 7. Platforms -->
+      <div>
+
+        <label>7. What social media platforms do you commonly use?</label><br>
+        <input type="checkbox" name="platform" id="facebook" value="Facebook">
+        <label for="facebook">Facebook</label>
+        <input type="checkbox" name="platform" id="twitter" value="Twitter">
+        <label for="twitter">Twitter</label>
+        <input type="checkbox" name="platform" id="instagram" value="Instagram">
+        <label for="instagram">Instagram</label>
+        <input type="checkbox" name="platform" id="youtube" value="YouTube">
+        <label for="youtube">YouTube</label>
+        <input type="checkbox" name="platform" id="discord" value="Discord">
+        <label for="discord">Discord</label>
+        <input type="checkbox" name="platform" id="reddit" value="Reddit">
+        <label for="reddit">Reddit</label>
+        <input type="checkbox" name="platform" id="pinterest" value="Pinterest">
+        <label for="pinterest">Pinterest</label>
+        <input type="checkbox" name="platform" id="tiktok" value="TikTok">
+        <label for="tiktok">TikTok</label>
+        <input type="checkbox" name="platform" id="snapchat" value="Snapchat">
+        <label for="snapchat">Snapchat</label>
+      </div>
+
+      <!-- 8. Average Time -->
+      <div>
+        <label for="listTime">8. What is the average time you spend on social media every day?</label>
+        <select name="averageTime" id="listTime" required>
+          <option value="Less than an Hour">Less than an Hour</option>
+          <option value="Between 1 and 2 hours">Between 1 and 2 hours</option>
+          <option value="Between 2 and 3 hours">Between 2 and 3 hours</option>
+          <option value="Between 3 and 4 hours">Between 3 and 4 hours</option>
+          <option value="Between 4 and 5 hours">Between 4 and 5 hours</option>
+          <option value="More than 5 hours">More than 5 hours</option>
+        </select>
+      </div>
+      <h3>For the following questions, please rate from 1 to 5 with 1 being very low and 5 being very high.</h3>
+      <!-- 9. Purpose -->
+      <div>
+        <label for="purpose">9. How often do you find yourself using social media without a specific
+          purpose?</label><br />
+        <input type="range" id="purpose" name="purpose" list="values9" min="1" max="5" step="1" />
+        <datalist id="values9">
+          <option value="1" label="1"></option>
+          <option value="2" label="2"></option>
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+        </datalist>
+      </div>
+      <!-- 10. Distracted Busy-->
+      <div>
+        <label for="distractedBusy">10. How often do you get distracted by social media when you are busy doing
+          something?
+        </label><br />
+        <input type="range" id="distractedBusy" name="distractedBusy" list="values10" min="1" max="5" step="1" />
+        <datalist id="values10">
+          <option value="1" label="1"></option>
+          <option value="2" label="2"></option>
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+        </datalist>
+      </div>
+
+      <!-- 11. Restless -->
+      <div>
+        <label for="restless">11. Do you feel restless if you haven’t used social media in a while?</label><br />
+        <input type="range" id="restless" name="restless" list="values11" min="1" max="5" step="1" />
+        <datalist id="values11">
+          <option value="1" label="1"></option>
+          <option value="2" label="2"></option>
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+        </datalist>
+      </div>
+      <!-- 12. Easily Distracted -->
+      <div>
+        <label for="easilyDistracted">12. How easily distracted are you?</label><br />
+        <input type="range" id="easilyDistracted" name="easilyDistracted" list="values12" min="1" max="5" step="1" />
+        <datalist id="values12">
+          <option value="1" label="1"></option>
+          <option value="2" label="2"></option>
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+        </datalist>
+      </div>
+      <!-- 13. Bothered Worries -->
+      <div>
+        <label for="botheredWorries">13. How much are you bothered by worries?</label><br />
+        <input type="range" id="botheredWorries" name="botheredWorries" list="values13" min="1" max="5" step="1" />
+        <datalist id="values13">
+          <option value="1" label="1"></option>
+          <option value="2" label="2"></option>
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+        </datalist>
+      </div>
+      <!-- 14. Concentration -->
+      <div>
+        <label for="concentration">14. Do you find it difficult to concentrate on things?</label><br />
+        <input type="range" id="concentration" name="concentration" list="values14" min="1" max="5" step="1" />
+        <datalist id="values14">
+          <option value="1" label="1"></option>
+          <option value="2" label="2"></option>
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+        </datalist>
+      </div>
+      <!-- 15. Compare -->
+      <div>
+        <label for="compare">15. How often do you compare yourself to other successful people through the use of social
+          media?
+        </label><br />
+        <input type="range" id="compare" name="compare" list="values15" min="1" max="5" step="1" />
+        <datalist id="values15">
+          <option value="1" label="1"></option>
+          <option value="2" label="2"></option>
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+        </datalist>
+      </div>
+      <!-- 16. Comparison Feelings -->
+      <div>
+        <label for="comparisonFeelings">16. Following the previous question, how do you feel about these comparisons,
+          generally
+          speaking?
+        </label><br />
+        <input type="range" id="comparisonFeelings" name="purpose" list="values16" min="1" max="5" step="1" />
+        <datalist id="values16">
+          <option value="1" label="1"></option>
+          <option value="2" label="2"></option>
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+        </datalist>
+      </div>
+      <!-- 17. Validation -->
+      <div>
+        <label for="validation">17. How often do you look to seek validation from features of social
+          media?</label><br />
+        <input type="range" id="validation" name="validation" list="values17" min="1" max="5" step="1" />
+        <datalist id="values17">
+          <option value="1" label="1"></option>
+          <option value="2" label="2"></option>
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+        </datalist>
+      </div>
+      <!-- 18. Depression -->
+      <div>
+        <label for="depression">18. How often do you feel depressed or down?</label><br />
+        <input type="range" id="depression" name="depression" list="values18" min="1" max="5" step="1" />
+        <datalist id="values18">
+          <option value="1" label="1"></option>
+          <option value="2" label="2"></option>
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+        </datalist>
+      </div>
+      <!-- 19. Activity Interest -->
+      <div>
+        <label for="activityInterest">19. How frequently does your interested in daily activities fluctuate?
+        </label><br />
+        <input type="range" id="activityInterest" name="purpose" list="values19" min="1" max="5" step="1" />
+        <datalist id="values19">
+          <option value="1" label="1"></option>
+          <option value="2" label="2"></option>
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+        </datalist>
+      </div>
+      <!-- 20. Sleep -->
+      <div>
+        <label for="sleep">20. How often do you face issues regarding sleep?</label><br />
+        <input type="range" id="sleep" name="sleep" list="values20" min="1" max="5" step="1" />
+        <datalist id="values20">
+          <option value="1" label="1"></option>
+          <option value="2" label="2"></option>
+          <option value="3" label="3"></option>
+          <option value="4" label="4"></option>
+          <option value="5" label="5"></option>
+        </datalist>
+      </div>
+
+      <div class="center">
+        <button class="button " type="submit">Submit</button>
+      </div>
+
+    </form>
+  </main>
 
 
-  </form>
-
+  <footer>
+    <p>&copy; Section 3-3 | All rights reserved</p>
+  </footer>
 
   <script>
-    function showSize(iSize) {
-      document.getElementById("lblSize").innerHTML = iSize;
-    }
+    document.querySelector(".menu-icon").addEventListener("click", function () {
+      this.parentElement.classList.toggle("close");
+    });
+  </script>
+  <script>
+    // JavaScript to handle header collapse on scroll
+    const header = document.querySelector('header');
+    let isHovered = false;
+
+    header.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+
+    header.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+
+    window.addEventListener('scroll', () => {
+      if (!isHovered) {
+        const scrollY = window.scrollY;
+        const maxPadding = 20; // Adjust as needed
+
+        // Collapse the header on scroll
+        header.style.padding = Math.max(maxPadding - scrollY, 5) + 'px';
+      }
+    });
   </script>
 </body>
 

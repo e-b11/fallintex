@@ -14,93 +14,95 @@
   <link rel="stylesheet" href="styles/main.css" type="text/css">
 </head>
 
-<header>
-  <div class="menu-icon">
-    <svg viewbox="0 0 60 60" width="40px" height="40px">
-      <line x1="5%" y1="50%" x2="95%" y2="50%" />
-      <line x1="5%" y1="50%" x2="95%" y2="50%" />
-    </svg>
+<body>
+  <header>
+    <div class="menu-icon">
+      <svg viewbox="0 0 60 60" width="40px" height="40px">
+        <line x1="5%" y1="50%" x2="95%" y2="50%" />
+        <line x1="5%" y1="50%" x2="95%" y2="50%" />
+      </svg>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#">HOME</a></li>
+        <li><a href="/survey">SURVEY</a></li>
+        <li><a href="/adminLogin">ADMIN</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <picture>
+      <source media="(min-width: 801px)" srcset="images/hero-2000px.jpg">
+      <source media="(min-width: 401px)" srcset="images/hero-800px.jpg">
+      <source media="(max-width: 400px)" srcset="images/hero-400px.jpg">
+      <img src="images/hero-800px.jpg" alt="Woman overlooking Provo, Utah">
+    </picture>
+    <div class="hero-text-wrapper">
+      <h1>Welcome to the Provo City Mental Health Survey</h1>
+      <p class="subtitle">Provo Social Media Usage and Mental Health Committee
+      </p>
+    </div>
   </div>
-  <nav>
-    <ul>
-      <li><a href="#">HOME</a></li>
-      <li><a href="/survey">SURVEY</a></li>
-      <li><a href="/adminLogin">ADMIN</a></li>
-    </ul>
-  </nav>
-</header>
 
-<div class="hero">
-  <picture>
-    <source media="(min-width: 801px)" srcset="images/hero-2000px.jpg">
-    <source media="(min-width: 401px)" srcset="images/hero-800px.jpg">
-    <source media="(max-width: 400px)" srcset="images/hero-400px.jpg">
-    <img src="images/hero-800px.jpg" alt="Woman overlooking Provo, Utah">
-  </picture>
-  <div class="hero-text-wrapper">
-    <h1>Welcome to the Provo City Mental Health Survey</h1>
-    <p class="subtitle">Provo Social Media Usage and Mental Health Committee
-    </p>
-  </div>
-</div>
+  <main>
+    <article class="panel">
+      <div class="text-wrapper left">
+        <h2>Survey</h2>
+        <p>Click the button below to be taken to a survey so we can learn more about Provo's social media health and
+          usage.</p>
+        <a href="/survey" class="button" id="button">Take the Survey</a>
+      </div>
+      <div class="image-wrapper">
+        <img src="images/survey-600px.jpg" alt="Man filling out forms with a pen" width="600" height="400">
+      </div>
+    </article>
+    <article class="panel">
+      <div class="text-wrapper">
+        <h2>Dashboard</h2>
+        <p>Click the link below to explore social media health and usage in Provo. Data is taken from Plainsville,
+          Whoknowswhere and from users in Provo, Utah. Filter by many options to see what's going on.</p>
+        <a href="/dashboard" class="button">See the Dashboard</a>
+      </div>
+      <div class="image-wrapper left">
+        <img src="images/dashboard-600px.jpg" alt="Person looking at a dashboard on a computer" width="600"
+          height="400">
+      </div>
+    </article>
+  </main>
 
-<main>
-  <article class="panel">
-    <div class="text-wrapper left">
-      <h2>Survey</h2>
-      <p>Click the button below to be taken to a survey so we can learn more about Provo's social media health and
-        usage.</p>
-      <a href="/survey" class="button" id="button">Take the Survey</a>
-    </div>
-    <div class="image-wrapper">
-      <img src="images/survey-600px.jpg" alt="Man filling out forms with a pen" width="600" height="400">
-    </div>
-  </article>
-  <article class="panel">
-    <div class="text-wrapper">
-      <h2>Dashboard</h2>
-      <p>Click the link below to explore social media health and usage in Provo. Data is taken from Plainsville,
-        Whoknowswhere and from users in Provo, Utah. Filter by many options to see what's going on.</p>
-      <a href="/dashboard" class="button">See the Dashboard</a>
-    </div>
-    <div class="image-wrapper left">
-      <img src="images/dashboard-600px.jpg" alt="Person looking at a dashboard on a computer" width="600" height="400">
-    </div>
-  </article>
-</main>
+  <footer>
+    <p>&copy; Section 3-3 | All rights reserved</p>
+  </footer>
 
-<footer>
-  <p>&copy; Section 3-3 | All rights reserved</p>
-</footer>
+  <script>
+    document.querySelector(".menu-icon").addEventListener("click", function () {
+      this.parentElement.classList.toggle("close");
+    });
+  </script>
+  <script>
+    // JavaScript to handle header collapse on scroll
+    const header = document.querySelector('header');
+    let isHovered = false;
 
-<script>
-  document.querySelector(".menu-icon").addEventListener("click", function () {
-    this.parentElement.classList.toggle("close");
-  });
-</script>
-<script>
-  // JavaScript to handle header collapse on scroll
-  const header = document.querySelector('header');
-  let isHovered = false;
+    header.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
 
-  header.addEventListener('mouseenter', () => {
-    isHovered = true;
-  });
+    header.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
 
-  header.addEventListener('mouseleave', () => {
-    isHovered = false;
-  });
+    window.addEventListener('scroll', () => {
+      if (!isHovered) {
+        const scrollY = window.scrollY;
+        const maxPadding = 20; // Adjust as needed
 
-  window.addEventListener('scroll', () => {
-    if (!isHovered) {
-      const scrollY = window.scrollY;
-      const maxPadding = 20; // Adjust as needed
-
-      // Collapse the header on scroll
-      header.style.padding = Math.max(maxPadding - scrollY, 5) + 'px';
-    }
-  });
-</script>
+        // Collapse the header on scroll
+        header.style.padding = Math.max(maxPadding - scrollY, 5) + 'px';
+      }
+    });
+  </script>
 </body>
 
 </html>

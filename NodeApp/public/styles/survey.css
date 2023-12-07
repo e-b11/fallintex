@@ -11,57 +11,49 @@
   --special-font: "Montserrat", sans-serif;
   --base-font: "Hind", sans-serif;
 }
-
-fieldset {
-  width: 0;
-  border-radius: 15px;
-  border: var(--misty-violet) 3px solid;
-  padding: 2rem;
-}
-
-body {
-  background-color: var(--soft-magenta);
-  display: flex;
-}
-
-header {
-  background-color: white;
-}
-
-/* header nav a {
-  color: var(--misty-violet);
-}
-
-header nav a[href]:hover {
-  color: var(--indigo);
-  font-weight: bold;
-} */
-
 form {
+  display: flex;
+  flex-direction: column;
   background-color: rgba(255, 255, 255, 0.567);
   border-radius: 15px;
   padding: 1rem;
   margin-top: 3em;
 }
 
-legend {
-  text-align: center;
-  font-size: 2rem;
-  color: var(--misty-violet);
-  text-shadow: 1px 1px 1px white;
-  font-family: var(--special-font);
-  font-weight: bold;
+main {
+  align-self: center;
+  padding: 0 1rem;
+  max-width: 50rem;
+  /* background-color: white; */
 }
 
-.login {
-  padding: 1rem;
+datalist {
   display: flex;
-  flex-direction: column;
-  font-size: 1.2rem;
+  flex-direction: row;
+  justify-content: space-between;
+  writing-mode: horizontal-tb;
+  width: 200px;
 }
 
-.login > div {
-  margin: 0.5rem 0;
+option {
+  padding: 0;
+}
+
+input[type="range"] {
+  width: 200px;
+  margin: 0;
+}
+
+/* button {
+  display: block;
+} */
+
+body {
+  background-color: var(--bright-rose);
+}
+
+header {
+  background-color: white;
 }
 
 .button {
@@ -92,4 +84,8 @@ body {
 footer {
   margin-top: auto;
   padding: 1rem 1rem 2rem;
+}
+
+.center {
+  text-align: center;
 }
