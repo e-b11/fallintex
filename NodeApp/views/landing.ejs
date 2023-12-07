@@ -5,25 +5,72 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Provo Mental Health</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hind:wght@400;700&family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="styles/style.css" type="text/css">
+  <link rel="stylesheet" href="styles/main.css" type="text/css">
 </head>
 
 <body>
 
   <header>
-    <a href="/">Home</a>
-    <a href="/survey">Take the Survey</a>
-    <a href="/adminLogin">Admin</a>
+    <!-- <div class="menu-icon">
+      <svg viewbox="0 0 60 60" width="40px" height="40px">
+        <line x1="5%" y1="50%" x2="95%" y2="50%" />
+        <line x1="5%" y1="50%" x2="95%" y2="50%" />
+      </svg>
+    </div> -->
+    <nav>
+      <ul>
+        <li><a href="#">HOME</a></li>
+        <li><a href="/survey">SURVEY</a></li>
+        <li><a href="/adminLogin">ADMIN</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <main>
+  <div class="hero">
     <h1>Welcome to the Provo City Mental Health Survey</h1>
     <img src="images/brain.png" alt="brain">
-  </main>
+  </div>
+
+  <article class="panel">
+    <div class="text-wrapper left">
+      <h2>Pancakes</h2>
+      <p>Pancakes are delicious. You can have them with lots of different toppings. Lorem ipsum dolor sit amet,
+        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+        minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+      <a href="#" class="button" id="button">Learn More</a>
+    </div>
+    <div class="image-wrapper">
+      <img src="images/pancakeswithblueberries-panel-600px.jpg"
+        alt="Stack of pancakes with syrup, blueberries, and bananas on a red plate." width="600" height="400">
+    </div>
+  </article>
+  <article class="panel">
+    <div class="text-wrapper">
+      <h2>Smoothies</h2>
+      <p>Smoothies are also good, and can have lots of fruit in them. Lorem ipsum dolor sit amet, consectetur
+        adipiscing elit,
+        sed
+        do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+      <a href="#" class="button">Learn More</a>
+    </div>
+    <div class="image-wrapper left">
+      <img src="images/smoothie-panel-600px.jpg" alt="Pink smoothie in a glass with a straw." width="600" height="452">
+    </div>
+  </article>
 
   <footer>
     <p>&copy; Section 3-3 | All rights reserved</p>
   </footer>
+
+
   <script>
     // JavaScript to handle header collapse on scroll
     const header = document.querySelector('header');

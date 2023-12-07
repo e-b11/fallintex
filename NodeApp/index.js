@@ -3,8 +3,10 @@
 
 //Express package
 const express = require("express");
+const cookieParser = require("cookie-parser");
 
 let app = express();
+app.use(cookieParser());
 
 let path = require("path");
 
