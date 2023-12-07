@@ -216,6 +216,31 @@ app.get("/viewadmins", (req, res) => {
     res.send("You do not have access to this page.");
   }
 });
+
+
+// DELETE FUNCTIONALITY
+app.post("/deleteadmin/:username", (req, res) => {
+  knex("admin").where("username", req.params.username).del().then(myadmins => {
+      res.redirect("/viewadmins");
+  }).catch(err => {
+      console.log(err);
+      res.status(500).json({err});
+  })
+});
+//CREATE FUNCTIONALITY (to be changed)
+app.post("/createadmin", (req, res) => {
+  const uname = req.body.adminname
+  const apassword = req.body.adminpassword
+  knex.raw('INSERT INTO admin (username, password) VALUES (?, ?)',[uname,apassword])
+  .then((result) => {
+    console.log(result);
+    res.redirect("/viewadmins");
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send("Error creating admin");
+  });
+});
 // app.post("/submitSurvey", (req, res) => {
 //   knex("survey")
 //     .insert({
