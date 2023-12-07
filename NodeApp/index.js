@@ -92,7 +92,7 @@ app.get("/viewsurveys", (req, res) => {
         "occ_status",
         "avg_time_social"
       )
-      .from("responses")
+      .from("responses").limit(30)
       .then((surveyData) => {
         const pageuser = req.cookies.username;
         // Render the 'rviewsurveys' EJS file and pass the adminData to it
@@ -111,6 +111,8 @@ app.get("/searchresponse", (req, res) => {
   //filter data in view
   const cat = req.query.category;
   const val = req.query.value;
+  let limit = req.query.limit;
+  limit = parseInt(limit)
   if (req.cookies.access == "granted") {
     // Query the 'responses' table to fetch all data
     let query;
@@ -126,7 +128,7 @@ app.get("/searchresponse", (req, res) => {
           "avg_time_social"
         )
         .from("responses")
-        .where(cat, val);
+        .where(cat, val).limit(limit);
     } else {
       query = knex
         .select(
@@ -139,7 +141,7 @@ app.get("/searchresponse", (req, res) => {
           "avg_time_social"
         )
         .from("responses")
-        .where(cat, "like", `%${val}%`);
+        .where(cat, "like", `%${val}%`).limit(limit);
     }
     query //the query was created by the if statement, execute that part then this is what you do with it.
       .then((surveyData) => {
