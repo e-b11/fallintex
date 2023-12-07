@@ -28,7 +28,7 @@ const knex = require("knex")({
   connection: {
     host: process.env.RDS_HOSTNAME || "localhost",
     user: process.env.RDS_USERNAME || "postgres",
-    password: process.env.RDS_PASSWORD || "password",
+    password: process.env.RDS_PASSWORD || "postgres",
     database: process.env.RDS_DB_NAME || "intex",
     port: process.env.RDS_PORT || 5432,
     ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false,
@@ -77,7 +77,8 @@ app.post("/adminLogin", (req, res) => {
     });
 });
 
-app.get("/viewsurveys", (req, res) => {   //view data
+app.get("/viewsurveys", (req, res) => {
+  //view data
   //view survey results
   if (req.cookies.access == "granted") {
     // Query the 'responses' table to fetch all data
@@ -106,7 +107,8 @@ app.get("/viewsurveys", (req, res) => {   //view data
   }
 });
 
-app.get("/searchresponse", (req, res) => {   //filter data in view
+app.get("/searchresponse", (req, res) => {
+  //filter data in view
   const cat = req.query.category;
   const val = req.query.value;
   if (req.cookies.access == "granted") {
@@ -123,7 +125,7 @@ app.get("/searchresponse", (req, res) => {   //filter data in view
           "occ_status",
           "avg_time_social"
         )
-        .from('responses')
+        .from("responses")
         .where(cat, val);
     } else {
       query = knex
@@ -136,7 +138,7 @@ app.get("/searchresponse", (req, res) => {   //filter data in view
           "occ_status",
           "avg_time_social"
         )
-        .from('responses')
+        .from("responses")
         .where(cat, "like", `%${val}%`);
     }
     query //the query was created by the if statement, execute that part then this is what you do with it.
@@ -153,61 +155,14 @@ app.get("/searchresponse", (req, res) => {   //filter data in view
     res.send("You do not have access to this page");
   }
 });
-// app.post("/submitSurvey", (req, res) => {
-//   knex("survey")
-//     .insert({
-//       country_name: req.body.country_name.toUpperCase(),
-//       popular_site: req.body.popular_site.toUpperCase(),
-//       capital: req.body.capital.toUpperCase(),
-//       population: req.body.population,
-//       visited: req.body.visited ? "Y" : "N",
-//       covid_level: req.body.covid_level.toUpperCase(),
-//     })
-//     .then((mycountry) => {
-//       res.redirect("/");
-//     });
-// });
 
-// READ FUNCTIONALITY (to be changed)
-// app.get("/", (req, res) => {
-//   knex
-//     .select("band_name", "lead_singer")
-//     .from("bands")
-//     .then((bands) => {
-//       res.render("displayBand", { mybands: bands });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json({ err });
-//     });
-// });
-
-//UPDATE FUNCTIONALITY (to be changed)
-// app.post("/editBand", (req, res) => {
-//   knex("bands").where("band_id", parseInt(req.body.bandID)).update({
-//       band_name: req.body.bandName,
-//       lead_singer: req.body.singer
-//   }).then(mybands => {
-//       res.redirect("/");
-//   });
-// });
-
-//CREATE FUNCTIONALITY (to be changed)
-// app.post("/addBand", (req, res) => {
-//   knex("bands").insert(req.body).then(mybands => {
-//       res.redirect("/");
-//   })
-// });
-
-//DELETE FUNCTIONALITY
-// app.post("/deleteBand/:id", (req, res) => {
-//   knex("bands").where("band_id", req.params.id).del().then(mybands => {
-//       res.redirect("/");
-//   }).catch(err => {
-//       console.log(err);
-//       res.status(500).json({err});
-//   })
-// });
+app.get("/adminAccounts", (req, res) => {
+  if (req.cookies.access == "granted") {
+    res.render("adminAccounts");
+  } else {
+    res.send("You do not have access to this page");
+  }
+});
 
 //Set up port/listening
 app.listen(port, () => console.log("Website started."));
