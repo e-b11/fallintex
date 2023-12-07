@@ -56,6 +56,29 @@ img {
   margin-top: 20px;
 }
 
+
+/* Add these styles to your CSS file */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px; /* Adjust as needed */
+}
+
+th, td {
+  border: 1px solid #ddd; /* Border color */
+  padding: 8px; /* Adjust padding as needed */
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2; /* Header background color */
+}
+
+/* Optional: Style for hover effect on rows */
+tr:hover {
+  background-color: #f5f5f5; /* Adjust as needed */
+}
+
 /* footer {
   background-color: #333;
   color: white;

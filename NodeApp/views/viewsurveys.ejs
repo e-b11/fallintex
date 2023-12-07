@@ -16,7 +16,7 @@
     <a href="/survey">Take the Survey</a>
     <a href="/adminLogin">Admin</a>
     <a href="/dashboard">Dashboard</a>
-    <a href="/">Admin</a>
+    <a href="/viewsurveys">Surveys</a>
 
   </header>
 
@@ -31,7 +31,7 @@
     <form action="/searchresponse" method="get">
 
       <p><label for="cat">Search by: </label>
-        <select id="cat" name="cat"> <!-- dropdown menu -->
+        <select id="catagory" name="category"> <!-- dropdown menu -->
           <option value="surveyid">Survey ID</option>
           <option value="age">Age</option>
           <option value="gender">Gender</option>
@@ -40,29 +40,26 @@
           <option value="avg_time_social">Avg Time - Social Media</option>
         </select>
       <p>Value to search for: </p>
-      <input type="text" id="val" name="val">
+      <input type="text" id="value" name="value">
       <button type="submit">Search</button></p>
     </form>
 
     <thead> <!--  table head -->
       <tr>
         <th>Survey ID</th>
-        <th>TimeStamp</th>
         <th>Age</th>
         <th>Gender</th>
         <th>Relationship Status</th>
         <th>Occupation Status</th>
         <th>Avg Time - Social Media</th>
       </tr>
+      <br>
     </thead>
     <tbody> <!-- table body + ejs magic -->
       <% for (let index=0; index < surveyData.length; index++){ %>
         <tr>
           <td>
             <%= surveyData[index].surveyid %>
-          </td>
-          <td>
-            <%= surveyData[index].timestamp %>
           </td>
           <td>
             <%= surveyData[index].age %>
@@ -77,9 +74,10 @@
             <%= surveyData[index].occ_status %>
           </td>
           <td>
-            <%= surveyData[index].acg_time_social %>
+            <%= surveyData[index].avg_time_social %>
           </td>
         </tr>
+        <br>
         <% }; %>
     </tbody>
 

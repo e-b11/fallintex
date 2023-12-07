@@ -28,7 +28,7 @@ const knex = require("knex")({
   connection: {
     host: process.env.RDS_HOSTNAME || "localhost",
     user: process.env.RDS_USERNAME || "postgres",
-    password: process.env.RDS_PASSWORD || "postgres",
+    password: process.env.RDS_PASSWORD || "password",
     database: process.env.RDS_DB_NAME || "intex",
     port: process.env.RDS_PORT || 5432,
     ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false,
@@ -62,7 +62,7 @@ app.post("/adminLogin", (req, res) => {
     .then((user) => {
       if (user) {
         res.cookie("username", username, { maxAge: 9000000, httpOnly: true }); //creates a cookie 'username' and assigns the value of the username
-        res.cookie("Access", "Granted", { maxAge: 9000000, httpOnly: true }); //creates a cookie that sets access privileges to granted
+        res.cookie("access", "granted", { maxAge: 9000000, httpOnly: true }); //creates a cookie that sets access privileges to granted
 
         // populate the data for all admin users and send it to the admin page
 
@@ -77,9 +77,9 @@ app.post("/adminLogin", (req, res) => {
     });
 });
 
-app.get("/viewsurveys", (req, res) => {
+app.get("/viewsurveys", (req, res) => {   //view data
   //view survey results
-  if (req.cookies.access == "Granted") {
+  if (req.cookies.access == "granted") {
     // Query the 'responses' table to fetch all data
     knex
       .select(
@@ -106,37 +106,38 @@ app.get("/viewsurveys", (req, res) => {
   }
 });
 
-app.get("/searchresponse/:cat/:val", (req, res) => {
-  const { cat, val } = req.query;
+app.get("/searchresponse", (req, res) => {   //filter data in view
+  const cat = req.query.category;
+  const val = req.query.value;
   if (req.cookies.access == "granted") {
     // Query the 'responses' table to fetch all data
     let query;
-    if (category == "surveyid" || category == "age") {
+    if (cat == "surveyid" || cat == "age") {
       query = knex
         .select(
           //query integers
           "surveyid",
-          "timestamp",
           "age",
           "gender",
           "rel_status",
           "occ_status",
           "avg_time_social"
         )
+        .from('responses')
         .where(cat, val);
     } else {
       query = knex
         .select(
           //query strings
           "surveyid",
-          "timestamp",
           "age",
           "gender",
           "rel_status",
           "occ_status",
           "avg_time_social"
         )
-        .where("cat", "like", `%${val}%`);
+        .from('responses')
+        .where(cat, "like", `%${val}%`);
     }
     query //the query was created by the if statement, execute that part then this is what you do with it.
       .then((surveyData) => {
