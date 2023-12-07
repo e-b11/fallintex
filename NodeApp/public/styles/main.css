@@ -162,7 +162,7 @@ aside {
 
 footer {
   background-color: var(--indigo);
-  color: var(--sandy);
+  color: white;
   padding: 2rem 1rem 3rem;
   margin: 0;
 }
@@ -309,9 +309,9 @@ header nav a[href]:hover {
 }
 
 .hero h1 {
-  font-size: clamp(3.5rem, 10vw + 1rem, 10rem);
+  font-size: clamp(3.5rem, 10vw + 1rem, 8rem);
   text-shadow: black 2px 2px 3px;
-  color: var(--bright-rose);
+  color: var(--sandy);
 }
 
 .hero-text-wrapper {
@@ -319,8 +319,9 @@ header nav a[href]:hover {
   flex-direction: column;
   align-items: center;
   position: absolute;
-  inset: 20px 0 0 0;
+  inset: 10px 0 0 0;
   text-align: center;
+  margin: 0 1rem;
 }
 
 .hero p {

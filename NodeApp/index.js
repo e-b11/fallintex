@@ -4,11 +4,11 @@
 //Express package
 const express = require("express");
 const cookieParser = require("cookie-parser");
-
-let app = express();
-app.use(cookieParser());
+const favicon = require("serve-favicon");
 
 let path = require("path");
+const faviconPath = path.join(__dirname, "public");
+let app = express();
 
 //Set port to 3000 or AWS port
 const port = process.env.PORT || 3000;
@@ -16,9 +16,11 @@ const port = process.env.PORT || 3000;
 //Add ejs
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 //Connect css file
 app.use(express.static(__dirname + "/public"));
+app.use(favicon(path.join(faviconPath, "favicon.ico")));
 
 // Set up knex, will have to adjust database
 const knex = require("knex")({
@@ -98,6 +100,59 @@ app.post("/adminLogin", (req, res) => {
     });
 });
 
+app.get("/viewsurveys", (req, res) => {
+  //view survey results
+  if (req.cookies.access == "granted") {
+    // Query the 'responses' table to fetch all data
+    knex
+      .select(
+        "surveyid",
+        "timestamp",
+        "age",
+        "gender",
+        "rel_status",
+        "occ_status",
+        "avg_time_social"
+      )
+      .from("responses")
+      .then((surveyData) => {
+        const pageuser = req.cookies.username;
+        // Render the 'rviewsurveys' EJS file and pass the adminData to it
+        res.render("viewsurveys", { surveyData, pageuser });
+      })
+      .catch((error) => {
+        console.error("Error querying database:", error);
+        res.status(500).send("Internal Server Error");
+      });
+  } else {
+    res.send("You do not have access to this page");
+  }
+});
+
+app.get("/searchresponse", (req, res) => {
+  const { category, value } = req.query;
+  if (req.cookies.access == "granted") {
+    // Query the 'responses' table to fetch all data
+    let query;
+    if (category == "surveyid" || category == "age") {
+      query = knex("responses").where(category, value);
+    } else {
+      query = knex("responses").whereLike(category, value);
+    }
+    query //the query was created by the if statement, execute that part then this is what you do with it.
+      .then((surveyData) => {
+        const pageuser = req.cookies.username;
+        // Render the 'viewsurveys' EJS file and pass the adminData to it
+        res.render("viewsurveys", { surveyData, pageuser });
+      })
+      .catch((error) => {
+        console.error("Error querying database:", error);
+        res.status(500).send("Internal Server Error");
+      });
+  } else {
+    res.send("You do not have access to this page");
+  }
+});
 // app.post("/submitSurvey", (req, res) => {
 //   knex("survey")
 //     .insert({

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Provo Mental Health</title>
+  <link rel="stylesheet" href="styles/style.css" type="text/css">
+  <link rel="stylesheet" href="styles/main.css" type="text/css">
+</head>
+
+<body>
+
+  <header>
+    <a href="/">Home</a>
+    <a href="/survey">Take the Survey</a>
+    <a href="/adminLogin">Admin</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/">Admin</a>
+
+  </header>
+
+  <main>
+    <h1>Welcome <%= pageuser %>
+    </h1>
+
+
+    <h2>Survey Responses:</h2><br><br>
+
+
+    <form action="/searchresponse" method="get">
+
+      <p><label for="selectCategory">Search by: </label>
+        <select id="selectCategory" name="selectedOption"> <!-- dropdown menu -->
+          <option value="surveyid">Survey ID</option>
+          <option value="age">Age</option>
+          <option value="gender">Gender</option>
+          <option value="rel_status">Relationship Status</option>
+          <option value="occ_status">Occupation Status</option>
+          <option value="avg_time_social">Avg Time - Social Media</option>
+        </select>
+      <p>Value to search for: </p>
+      <input type="text" id="searchtext" name="selectedOption">
+      <button type="submit">Search</button></p>
+    </form>
+
+    <thead> <!--  table head -->
+      <tr>
+        <th>Survey ID</th>
+        <th>TimeStamp</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Relationship Status</th>
+        <th>Occupation Status</th>
+        <th>Avg Time - Social Media</th>
+      </tr>
+    </thead>
+    <tbody> <!-- table body + ejs magic -->
+      <% for (let index=0; index < surveyData.length; index++){ %>
+        <tr>
+          <td>
+            <%= surveyData[index].surveyid %>
+          </td>
+          <td>
+            <%= surveyData[index].timestamp %>
+          </td>
+          <td>
+            <%= surveyData[index].age %>
+          </td>
+          <td>
+            <%= surveyData[index].gender %>
+          </td>
+          <td>
+            <%= surveyData[index].rel_status %>
+          </td>
+          <td>
+            <%= surveyData[index].occ_status %>
+          </td>
+          <td>
+            <%= surveyData[index].acg_time_social %>
+          </td>
+        </tr>
+        <% }; %>
+    </tbody>
+
+
+
+  </main>
+
+
+  <footer>
+    <p>&copy; Section 3-3 | All rights reserved</p>
+  </footer>
+  <script>
+    // JavaScript to handle header collapse on scroll
+    const header = document.querySelector('header');
+    let isHovered = false;
+
+    header.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+
+    header.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+
+    window.addEventListener('scroll', () => {
+      if (!isHovered) {
+        const scrollY = window.scrollY;
+        const maxPadding = 20; // Adjust as needed
+
+        // Collapse the header on scroll
+        header.style.padding = Math.max(maxPadding - scrollY, 5) + 'px';
+      }
+    });
+  </script>
+</body>
+
+</html>
