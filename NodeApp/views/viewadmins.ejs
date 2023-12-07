@@ -21,7 +21,7 @@
   <main>
     <h1>Welcome <%= pageuser %></h1>
     <br>
-    <button type="button" onclick="">Create Admin</button>
+    <p>Create User</p>
     <form action="" method="get">
         <label for="adminname">Username</label>
         <input type="text" id="adminname" name="adminname">
@@ -34,20 +34,30 @@
             <td>Username</td>
             <td>Password</td>
             <td>Edit</td>
+            <td>Delete User</td>
 
         </tr>
         <p id="createuser"></p>
     </thead>
     <br>
     <tbody>
-        <% adminData.forEach(admin => { %>
+        <% for(let icount = 0; icount< adminData.length; icount++) { %>
             <tr>
-            <td><%= admin.username %></td>
-            <td><%= admin.password %></td>
-            <td><button type="button">Edit Info</button></td>
+            <td><%= adminData[icount].username %></td>
+            <td><%= adminData[icount].password %></td>
+            <td style="text-align: center;">
+                <form action="/editadmin/<%= adminData[icount].username %>" method="GET">
+                  <button type="submit">Edit</button>
+                </form>
+              </td>
+              <td style="text-align: center;">
+                <form action="/deleteadmin/<%= adminData[icount].username %>" method="POST">
+                  <button type="submit">Delete</button>
+                </form>
+              </td>
             </tr>
             <br>
-          <% }); %>
+          <% }; %>
     </tbody>
 
   </main>
@@ -57,10 +67,7 @@
   </footer>
   <script>
 
-    function create_admin() {
-        document.getElementById("createuser").innerHTML = 'some string that I will update later'
 
-    }
 
 
 
