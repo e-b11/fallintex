@@ -34,7 +34,7 @@
       <h3>The first portion of this survey is to discover how you use social media.</h3>
       <!-- Timestamp -->
       <!-- <div>
-        <input type="hidden" name="timestamp" id="timestamp" hidden>
+        <input type="datetime-local" name="timestamp" id="timestamp">
       </div> -->
       <!-- 1. Age -->
       <div>
@@ -72,19 +72,19 @@
         </select>
       </div>
       <!-- 5. Organization Affiliation -->
-      <!-- <div>
+      <div>
         <label>5. What type of organizations are you affiliated with?</label><br>
-        <input type="checkbox" name="affiliation" id="school" value="School">
+        <input type="checkbox" name="affiliationValues[]" id="school" value="1">
         <label for="school">School</label>
-        <input type="checkbox" name="affiliation" id="university" value="University">
+        <input type="checkbox" name="affiliationValues[]" id="university" value="2">
         <label for="university">University</label>
-        <input type="checkbox" name="affiliation" id="private" value="Private">
+        <input type="checkbox" name="affiliationValues[]" id="private" value="3">
         <label for="private">Private</label>
-        <input type="checkbox" name="affiliation" id="company" value="Company">
+        <input type="checkbox" name="affiliationValues[]" id="company" value="4">
         <label for="company">Company</label>
-        <input type="checkbox" name="affiliation" id="government" value="Government">
+        <input type="checkbox" name="affiliationValues[]" id="government" value="5">
         <label for="government">Government</label>
-      </div> -->
+      </div>
       <!-- 6. Social Media Use -->
       <div>
         <label>6. Do you use Social Media?</label><br>
@@ -94,28 +94,28 @@
         <label for="no">No</label>
       </div>
       <!-- 7. Platforms -->
-      <!-- <div>
+      <div>
 
         <label>7. What social media platforms do you commonly use?</label><br>
-        <input type="checkbox" name="platform" id="facebook" value="Facebook">
+        <input type="checkbox" name="checkboxValues[]" id="facebook" value="1">
         <label for="facebook">Facebook</label>
-        <input type="checkbox" name="platform" id="twitter" value="Twitter">
+        <input type="checkbox" name="checkboxValues[]" id="twitter" value="7">
         <label for="twitter">Twitter</label>
-        <input type="checkbox" name="platform" id="instagram" value="Instagram">
+        <input type="checkbox" name="checkboxValues[]" id="instagram" value="2">
         <label for="instagram">Instagram</label>
-        <input type="checkbox" name="platform" id="youtube" value="YouTube">
+        <input type="checkbox" name="checkboxValues[]" id="youtube" value="8">
         <label for="youtube">YouTube</label>
-        <input type="checkbox" name="platform" id="discord" value="Discord">
+        <input type="checkbox" name="checkboxValues[]" id="discord" value="0">
         <label for="discord">Discord</label>
-        <input type="checkbox" name="platform" id="reddit" value="Reddit">
+        <input type="checkbox" name="checkboxValues[]" id="reddit" value="4">
         <label for="reddit">Reddit</label>
-        <input type="checkbox" name="platform" id="pinterest" value="Pinterest">
+        <input type="checkbox" name="checkboxValues[]" id="pinterest" value="3">
         <label for="pinterest">Pinterest</label>
-        <input type="checkbox" name="platform" id="tiktok" value="TikTok">
+        <input type="checkbox" name="checkboxValues[]" id="tiktok" value="6">
         <label for="tiktok">TikTok</label>
-        <input type="checkbox" name="platform" id="snapchat" value="Snapchat">
+        <input type="checkbox" name="checkboxValues[]" id="snapchat" value="5">
         <label for="snapchat">Snapchat</label>
-      </div> -->
+      </div>
 
       <!-- 8. Average Time -->
       <div>
@@ -308,16 +308,6 @@
   <footer>
     <p>&copy; Section 3-3 | All rights reserved</p>
   </footer>
-  <script>
-    function setTimestamp() {
-      var timestampInput = document.getElementById("timestamp");
-      var currentTimestamp = new Date().toISOString();
-      timestampInput.value = currentTimestamp;
-    }
-
-    // Attach the setTimestamp function to the form's submit event
-    document.getElementById("surveyForm").addEventListener("submit", setTimestamp);
-  </script>
   <script>
     document.querySelector(".menu-icon").addEventListener("click", function () {
       this.parentElement.classList.toggle("close");

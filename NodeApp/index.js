@@ -28,7 +28,7 @@ const knex = require("knex")({
   connection: {
     host: process.env.RDS_HOSTNAME || "localhost",
     user: process.env.RDS_USERNAME || "postgres",
-    password: process.env.RDS_PASSWORD || "password",
+    password: process.env.RDS_PASSWORD || "postgres",
     database: process.env.RDS_DB_NAME || "intex",
     port: process.env.RDS_PORT || 5432,
     ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false,
@@ -45,10 +45,55 @@ app.get("/survey", (req, res) => {
   res.render("surveyPage");
 });
 
+// app.post("/surveySubmit", (req, res) => {
+//   knex("responses")
+//     .insert({
+//       age: parseInt(req.body.age),
+//       gender: req.body.gender,
+//       rel_status: req.body.rel_status,
+//       occ_status: req.body.occ_status,
+//       social_media_useage: req.body.social_media_useage,
+//       avg_time_social: req.body.avg_time_social,
+//       use_no_purpose: req.body.use_no_purpose,
+//       distracted_social: req.body.distracted_social,
+//       restless_no_media: req.body.restless_no_media,
+//       distracted_general: req.body.distracted_general,
+//       bothered_worries: req.body.bothered_worries,
+//       difficult_concentrate: req.body.difficult_concentrate,
+//       compare_successful: req.body.compare_successful,
+//       feeling_comparison: req.body.feeling_comparison,
+//       validation_social: req.body.validation_social,
+//       depressed_down: req.body.depressed_down,
+//       fluctuate_interests: req.body.fluctuate_interests,
+//       sleep_issues: req.body.sleep_issues,
+//       origin: req.body.origin,
+//     })
+//     .returning("surveyid")
+//     .then(([rsurveyid]) => {
+//       const surveyid = parseInt(rsurveyid, 10);
+
+//       knex("survey_platforms").insert({
+//         // surveyid: surveyid,
+//         // platformid: req.body.facebook ? 1 : 80,
+//         surveyid: 45,
+//         platformid: 1,
+//       });
+//     })
+//     .then(() => {
+//       res.send("Form submitted successfully!");
+//     })
+//     .catch((error) => {
+//       console.error("Error inserting into database:", error);
+//       res.status(500).send("Internal Server Error");
+//     });
+// });
+
 app.post("/surveySubmit", (req, res) => {
+  // Step 1: Insert data into the first table
+  let firstTableId;
   knex("responses")
     .insert({
-      // timestamp: req.body.timestamp,
+      // Your columns and values from the form for the first table
       age: parseInt(req.body.age),
       gender: req.body.gender,
       rel_status: req.body.rel_status,
@@ -69,11 +114,44 @@ app.post("/surveySubmit", (req, res) => {
       sleep_issues: req.body.sleep_issues,
       origin: req.body.origin,
     })
-    .then((myresponses) => {
-      res.redirect("/survey");
+    .returning("surveyid") // Retrieve the generated ID
+    .then((generatedIds) => {
+      firstTableId = generatedIds[0].surveyid;
+
+      // Step 2: Insert data into the second table using the generated ID
+      const checkboxes = req.body.checkboxValues || []; // Assuming checkbox values are an array
+
+      if (checkboxes.length > 0) {
+        const secondTableData = checkboxes.map((checkboxValue) => ({
+          surveyid: firstTableId, // Link to the first table using the generated ID
+          platformid: parseInt(checkboxValue),
+        }));
+
+        return knex("survey_platforms").insert(secondTableData);
+      } else {
+        return Promise.resolve();
+      }
+    })
+    .then(() => {
+      // Step 3: Insert data into the third table using the generated ID
+      const checkboxes2 = req.body.affiliationValues || []; // Assuming checkbox values are an array
+
+      if (checkboxes2.length > 0) {
+        const thirdTableData = checkboxes2.map((checkboxValue) => ({
+          surveyid: firstTableId, // Link to the first table using the generated ID
+          affiliationid: parseInt(checkboxValue),
+        }));
+
+        return knex("survey_affiliations").insert(thirdTableData);
+      } else {
+        return Promise.resolve();
+      }
+    })
+    .then(() => {
+      res.send("Form submitted successfully!");
     })
     .catch((error) => {
-      console.error("Error inserting into database:", error);
+      console.error("Error processing the form:", error);
       res.status(500).send("Internal Server Error");
     });
 });
@@ -246,61 +324,42 @@ app.post("/createadmin", (req, res) => {
     });
 });
 
-// app.post("/submitSurvey", (req, res) => {
-//   knex("survey")
-//     .insert({
-//       country_name: req.body.country_name.toUpperCase(),
-//       popular_site: req.body.popular_site.toUpperCase(),
-//       capital: req.body.capital.toUpperCase(),
-//       population: req.body.population,
-//       visited: req.body.visited ? "Y" : "N",
-//       covid_level: req.body.covid_level.toUpperCase(),
-//     })
-//     .then((mycountry) => {
-//       res.redirect("/");
-//     });
-// });
-
-// READ FUNCTIONALITY (to be changed)
-// app.get("/", (req, res) => {
-//   knex
-//     .select("band_name", "lead_singer")
-//     .from("bands")
-//     .then((bands) => {
-//       res.render("displayBand", { mybands: bands });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//       res.status(500).json({ err });
-//     });
-// });
+app.get("/editadmin/:username", (req, res) => {
+  if (req.cookies.access == "granted") {
+    const username = req.params.username;
+    res.cookie("editusername", username, { maxAge: 900000, httpOnly: true }); //creates a cookie 'username' and assigns the value of the username
+    knex
+      .select("username", "password")
+      .from("admin")
+      .where("username", username)
+      .then((adminresult) => {
+        res.render("edituser", { adminresult });
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).send("Error creating admin");
+      });
+  } else {
+    res.send("You don't have access to this page.");
+  }
+});
 
 //UPDATE FUNCTIONALITY (to be changed)
-// app.post("/editBand", (req, res) => {
-//   knex("bands").where("band_id", parseInt(req.body.bandID)).update({
-//       band_name: req.body.bandName,
-//       lead_singer: req.body.singer
-//   }).then(mybands => {
-//       res.redirect("/");
-//   });
-// });
-
-//CREATE FUNCTIONALITY (to be changed)
-// app.post("/addBand", (req, res) => {
-//   knex("bands").insert(req.body).then(mybands => {
-//       res.redirect("/");
-//   })
-// });
-
-//DELETE FUNCTIONALITY
-// app.post("/deleteBand/:id", (req, res) => {
-//   knex("bands").where("band_id", req.params.id).del().then(mybands => {
-//       res.redirect("/");
-//   }).catch(err => {
-//       console.log(err);
-//       res.status(500).json({err});
-//   })
-// });
+app.post("/editadmin", (req, res) => {
+  if (req.cookies.access == "granted") {
+    knex("admin")
+      .where("username", req.cookies.editusername)
+      .update({
+        username: req.body.newusername,
+        password: req.body.newpassword,
+      })
+      .then((thisAdmin) => {
+        res.redirect("/viewadmins");
+      });
+  } else {
+    res.send("You Don't have access to this page");
+  }
+});
 
 //Set up port/listening
 app.listen(port, () => console.log("Website started."));
