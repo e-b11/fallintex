@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Data</title>
+  <link rel="stylesheet" href="styles/style.css" type="text/css">
+</head>
+
+<body>
+ 
+  <header>
+    <a href="/">Home</a>
+    <a href="/survey">Take the Survey</a>
+    <a href="/adminLogin">Admin Login</a>
+    <a href="/viewadmins">Admin Info</a>
+
+  </header>
+
+  <main>
+    <h1>Welcome <%= pageuser %></h1>
+    <br>
+    <button type="button" onclick="">Create Admin</button>
+    <form action="" method="get">
+        <label for="adminname">Username</label>
+        <input type="text" id="adminname" name="adminname">
+        <label for="adminpassword">Username</label>
+        <input type="text" id="adminpassword" name="adminpassword">
+    </form>
+    <br>
+    <thead>
+        <tr>
+            <td>Username</td>
+            <td>Password</td>
+            <td>Edit</td>
+
+        </tr>
+        <p id="createuser"></p>
+    </thead>
+    <br>
+    <tbody>
+        <% adminData.forEach(admin => { %>
+            <tr>
+            <td><%= admin.username %></td>
+            <td><%= admin.password %></td>
+            <td><button type="button">Edit Info</button></td>
+            </tr>
+            <br>
+          <% }); %>
+    </tbody>
+
+  </main>
+
+  <footer>
+    <p>&copy; Section 3-3 | All rights reserved</p>
+  </footer>
+  <script>
+
+    function create_admin() {
+        document.getElementById("createuser").innerHTML = 'some string that I will update later'
+
+    }
+
+
+
+
+
+
+
+
+    // JavaScript to handle header collapse on scroll
+    const header = document.querySelector('header');
+    let isHovered = false;
+
+    header.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+
+    header.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+
+    window.addEventListener('scroll', () => {
+      if (!isHovered) {
+        const scrollY = window.scrollY;
+        const maxPadding = 20; // Adjust as needed
+
+        // Collapse the header on scroll
+        header.style.padding = Math.max(maxPadding - scrollY, 5) + 'px';
+      }
+    });
+  </script>
+</body>
+
+</html>

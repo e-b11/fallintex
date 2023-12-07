@@ -153,6 +153,24 @@ app.get("/searchresponse", (req, res) => {   //filter data in view
     res.send("You do not have access to this page");
   }
 });
+
+app.get("/viewadmins", (req, res) => {     //view and edit admin info
+  if(req.cookies.access == 'granted'){
+
+    knex.select('username','password').from('admin')   //query the database for admin info
+    .then((adminData) => {
+      const pageuser = req.cookies.username;
+      res.render('viewadmins', {adminData, pageuser}); //pass through the query data and username
+    })
+    .catch((error) => {
+      console.error("Error querying database:", error);
+      res.status(500).send("Internal Server Error");
+    });
+    }
+  else{
+    res.send(' You do not have permission to view this page')
+  }
+});
 // app.post("/submitSurvey", (req, res) => {
 //   knex("survey")
 //     .insert({
