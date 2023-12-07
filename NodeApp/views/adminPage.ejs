@@ -12,12 +12,21 @@
 <body>
 
   <header>
-    <a href="/">Home</a>
-    <a href="/survey">Take the Survey</a>
-    <a href="/adminLogin">Admin</a>
-    <a href="/dashboard">Dashboard</a>
-    <a href="/viewsurveys">Surveys</a>
-
+    <div class="menu-icon">
+      <svg viewbox="0 0 60 60" width="40px" height="40px">
+        <line x1="5%" y1="50%" x2="95%" y2="50%" />
+        <line x1="5%" y1="50%" x2="95%" y2="50%" />
+      </svg>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/survey">SURVEY</a></li>
+        <li><a href="/adminLogin">ADMIN</a></li>
+        <li><a href="/viewsurveys">VIEW SURVEYS</a></li>
+        <li><a href="/viewadmins">ACCOUNTS</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
@@ -39,7 +48,7 @@
       </svg>
       <p>View Surveys</p>
     </a>
-    <a href="/adminAccounts" class="card">
+    <a href="/viewadmins" class="card">
       <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16"
         viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
         <path fill="#3e2a35"
@@ -47,16 +56,6 @@
       </svg>
       <p>Account Management</p>
     </a>
-    <!-- <a href="#" class="card">
-      <img src="images/crepes-card-500px.jpg" alt="Crepes with whipped cream and fruit" width="500" height="636"
-        loading="lazy">
-      <p>Crêpes</p>
-    </a>
-    <a href="#" class="card">
-      <img src="images/oatmeal-card-500px.jpg" alt="Oatmeal with berries and nuts" width="500" height="636"
-        loading="lazy">
-      <p>Oatmeal</p>
-    </a> -->
   </section>
 
   <footer>
