@@ -28,7 +28,7 @@ const knex = require("knex")({
   connection: {
     host: process.env.RDS_HOSTNAME || "localhost",
     user: process.env.RDS_USERNAME || "postgres",
-    password: process.env.RDS_PASSWORD || "password",
+    password: process.env.RDS_PASSWORD || "postgres",
     database: process.env.RDS_DB_NAME || "intex",
     port: process.env.RDS_PORT || 5432,
     ssl: process.env.DB_SSL ? { rejectUnauthorized: false } : false,
@@ -77,7 +77,8 @@ app.post("/adminLogin", (req, res) => {
     });
 });
 
-app.get("/viewsurveys", (req, res) => {   //view data
+app.get("/viewsurveys", (req, res) => {
+  //view data
   //view survey results
   if (req.cookies.access == "granted") {
     // Query the 'responses' table to fetch all data
@@ -106,7 +107,8 @@ app.get("/viewsurveys", (req, res) => {   //view data
   }
 });
 
-app.get("/searchresponse", (req, res) => {   //filter data in view
+app.get("/searchresponse", (req, res) => {
+  //filter data in view
   const cat = req.query.category;
   const val = req.query.value;
   if (req.cookies.access == "granted") {
@@ -123,7 +125,7 @@ app.get("/searchresponse", (req, res) => {   //filter data in view
           "occ_status",
           "avg_time_social"
         )
-        .from('responses')
+        .from("responses")
         .where(cat, val);
     } else {
       query = knex
@@ -136,7 +138,7 @@ app.get("/searchresponse", (req, res) => {   //filter data in view
           "occ_status",
           "avg_time_social"
         )
-        .from('responses')
+        .from("responses")
         .where(cat, "like", `%${val}%`);
     }
     query //the query was created by the if statement, execute that part then this is what you do with it.
@@ -151,24 +153,6 @@ app.get("/searchresponse", (req, res) => {   //filter data in view
       });
   } else {
     res.send("You do not have access to this page");
-  }
-});
-
-app.get("/viewadmins", (req, res) => {     //view and edit admin info
-  if(req.cookies.access == 'granted'){
-
-    knex.select('username','password').from('admin')   //query the database for admin info
-    .then((adminData) => {
-      const pageuser = req.cookies.username;
-      res.render('viewadmins', {adminData, pageuser}); //pass through the query data and username
-    })
-    .catch((error) => {
-      console.error("Error querying database:", error);
-      res.status(500).send("Internal Server Error");
-    });
-    }
-  else{
-    res.send(' You do not have permission to view this page')
   }
 });
 // app.post("/submitSurvey", (req, res) => {
