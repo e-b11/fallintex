@@ -148,7 +148,8 @@ app.post("/surveySubmit", (req, res) => {
       }
     })
     .then(() => {
-      res.send("Form submitted successfully!");
+      res.redirect("/");
+      alert("Thanks for filling out our survey!");
     })
     .catch((error) => {
       console.error("Error processing the form:", error);
