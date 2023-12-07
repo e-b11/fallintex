@@ -29,9 +29,13 @@
 
   <main class=".survey">
 
-    <form action="/submitSurvey" method="POST">
+    <form action="/surveySubmit" method="POST" id="surveyForm" name="surveyForm">
       <h1>Survey</h1>
       <h3>The first portion of this survey is to discover how you use social media.</h3>
+      <!-- Timestamp -->
+      <!-- <div>
+        <input type="hidden" name="timestamp" id="timestamp" hidden>
+      </div> -->
       <!-- 1. Age -->
       <div>
         <label for="age">1. Enter your age:</label>
@@ -48,8 +52,8 @@
       </div>
       <!-- 3. Relationship -->
       <div>
-        <label for="listRelationship">3. Select a Relationship Status:</label>
-        <select name="relationship" id="listRelationship" required>
+        <label for="rel_status">3. Select a Relationship Status:</label>
+        <select name="rel_status" id="rel_status" required>
           <option value="Single">Single</option>
           <option value="In a relationship">In a relationship</option>
           <option value="Married">Married</option>
@@ -58,8 +62,8 @@
       </div>
       <!-- 4. Occupation -->
       <div>
-        <label for="listOccupation">4. Select an Occupation Status:</label>
-        <select name="occupation" id="listOccupation" required>
+        <label for="occ_status">4. Select an Occupation Status:</label>
+        <select name="occ_status" id="occ_status" required>
           <option value="School Student">School Student</option>
           <option value="University Student">University Student</option>
           <option value="Unsalaried Worker">Unsalaried Worker</option>
@@ -68,7 +72,7 @@
         </select>
       </div>
       <!-- 5. Organization Affiliation -->
-      <div>
+      <!-- <div>
         <label>5. What type of organizations are you affiliated with?</label><br>
         <input type="checkbox" name="affiliation" id="school" value="School">
         <label for="school">School</label>
@@ -80,17 +84,17 @@
         <label for="company">Company</label>
         <input type="checkbox" name="affiliation" id="government" value="Government">
         <label for="government">Government</label>
-      </div>
+      </div> -->
       <!-- 6. Social Media Use -->
       <div>
         <label>6. Do you use Social Media?</label><br>
-        <input type="radio" name="socialMedia" id="yes">
+        <input type="radio" name="social_media_useage" id="yes" value="Yes">
         <label for="yes">Yes</label>
-        <input type="radio" name="socialMedia" id="no">
-        <label for="no ">No</label>
+        <input type="radio" name="social_media_useage" id="no" value="No">
+        <label for="no">No</label>
       </div>
       <!-- 7. Platforms -->
-      <div>
+      <!-- <div>
 
         <label>7. What social media platforms do you commonly use?</label><br>
         <input type="checkbox" name="platform" id="facebook" value="Facebook">
@@ -111,12 +115,12 @@
         <label for="tiktok">TikTok</label>
         <input type="checkbox" name="platform" id="snapchat" value="Snapchat">
         <label for="snapchat">Snapchat</label>
-      </div>
+      </div> -->
 
       <!-- 8. Average Time -->
       <div>
-        <label for="listTime">8. What is the average time you spend on social media every day?</label>
-        <select name="averageTime" id="listTime" required>
+        <label for="avg_time_social">8. What is the average time you spend on social media every day?</label>
+        <select name="avg_time_social" id="avg_time_social" required>
           <option value="Less than an Hour">Less than an Hour</option>
           <option value="Between 1 and 2 hours">Between 1 and 2 hours</option>
           <option value="Between 2 and 3 hours">Between 2 and 3 hours</option>
@@ -128,9 +132,9 @@
       <h3>For the following questions, please rate from 1 to 5 with 1 being very low and 5 being very high.</h3>
       <!-- 9. Purpose -->
       <div>
-        <label for="purpose">9. How often do you find yourself using social media without a specific
+        <label for="use_no_purpose">9. How often do you find yourself using social media without a specific
           purpose?</label><br />
-        <input type="range" id="purpose" name="purpose" list="values9" min="1" max="5" step="1" />
+        <input type="range" id="use_no_purpose" name="use_no_purpose" list="values9" min="1" max="5" step="1" />
         <datalist id="values9">
           <option value="1" label="1"></option>
           <option value="2" label="2"></option>
@@ -141,10 +145,10 @@
       </div>
       <!-- 10. Distracted Busy-->
       <div>
-        <label for="distractedBusy">10. How often do you get distracted by social media when you are busy doing
+        <label for="distracted_social">10. How often do you get distracted by social media when you are busy doing
           something?
         </label><br />
-        <input type="range" id="distractedBusy" name="distractedBusy" list="values10" min="1" max="5" step="1" />
+        <input type="range" id="distracted_social" name="distracted_social" list="values10" min="1" max="5" step="1" />
         <datalist id="values10">
           <option value="1" label="1"></option>
           <option value="2" label="2"></option>
@@ -156,8 +160,9 @@
 
       <!-- 11. Restless -->
       <div>
-        <label for="restless">11. Do you feel restless if you haven’t used social media in a while?</label><br />
-        <input type="range" id="restless" name="restless" list="values11" min="1" max="5" step="1" />
+        <label for="restless_no_media">11. Do you feel restless if you haven’t used social media in a
+          while?</label><br />
+        <input type="range" id="restless_no_media" name="restless_no_media" list="values11" min="1" max="5" step="1" />
         <datalist id="values11">
           <option value="1" label="1"></option>
           <option value="2" label="2"></option>
@@ -168,8 +173,9 @@
       </div>
       <!-- 12. Easily Distracted -->
       <div>
-        <label for="easilyDistracted">12. How easily distracted are you?</label><br />
-        <input type="range" id="easilyDistracted" name="easilyDistracted" list="values12" min="1" max="5" step="1" />
+        <label for="distracted_general">12. How easily distracted are you?</label><br />
+        <input type="range" id="distracted_general" name="distracted_general" list="values12" min="1" max="5"
+          step="1" />
         <datalist id="values12">
           <option value="1" label="1"></option>
           <option value="2" label="2"></option>
@@ -180,8 +186,8 @@
       </div>
       <!-- 13. Bothered Worries -->
       <div>
-        <label for="botheredWorries">13. How much are you bothered by worries?</label><br />
-        <input type="range" id="botheredWorries" name="botheredWorries" list="values13" min="1" max="5" step="1" />
+        <label for="bothered_worries">13. How much are you bothered by worries?</label><br />
+        <input type="range" id="bothered_worries" name="bothered_worries" list="values13" min="1" max="5" step="1" />
         <datalist id="values13">
           <option value="1" label="1"></option>
           <option value="2" label="2"></option>
@@ -192,8 +198,9 @@
       </div>
       <!-- 14. Concentration -->
       <div>
-        <label for="concentration">14. Do you find it difficult to concentrate on things?</label><br />
-        <input type="range" id="concentration" name="concentration" list="values14" min="1" max="5" step="1" />
+        <label for="difficult_concentrate">14. Do you find it difficult to concentrate on things?</label><br />
+        <input type="range" id="difficult_concentrate" name="difficult_concentrate" list="values14" min="1" max="5"
+          step="1" />
         <datalist id="values14">
           <option value="1" label="1"></option>
           <option value="2" label="2"></option>
@@ -204,10 +211,12 @@
       </div>
       <!-- 15. Compare -->
       <div>
-        <label for="compare">15. How often do you compare yourself to other successful people through the use of social
+        <label for="compare_successful">15. How often do you compare yourself to other successful people through the use
+          of social
           media?
         </label><br />
-        <input type="range" id="compare" name="compare" list="values15" min="1" max="5" step="1" />
+        <input type="range" id="compare_successful" name="compare_successful" list="values15" min="1" max="5"
+          step="1" />
         <datalist id="values15">
           <option value="1" label="1"></option>
           <option value="2" label="2"></option>
@@ -218,11 +227,12 @@
       </div>
       <!-- 16. Comparison Feelings -->
       <div>
-        <label for="comparisonFeelings">16. Following the previous question, how do you feel about these comparisons,
+        <label for="feeling_comparison">16. Following the previous question, how do you feel about these comparisons,
           generally
           speaking?
         </label><br />
-        <input type="range" id="comparisonFeelings" name="purpose" list="values16" min="1" max="5" step="1" />
+        <input type="range" id="feeling_comparison" name="feeling_comparison" list="values16" min="1" max="5"
+          step="1" />
         <datalist id="values16">
           <option value="1" label="1"></option>
           <option value="2" label="2"></option>
@@ -233,9 +243,9 @@
       </div>
       <!-- 17. Validation -->
       <div>
-        <label for="validation">17. How often do you look to seek validation from features of social
+        <label for="validation_social">17. How often do you look to seek validation from features of social
           media?</label><br />
-        <input type="range" id="validation" name="validation" list="values17" min="1" max="5" step="1" />
+        <input type="range" id="validation_social" name="validation_social" list="values17" min="1" max="5" step="1" />
         <datalist id="values17">
           <option value="1" label="1"></option>
           <option value="2" label="2"></option>
@@ -246,8 +256,8 @@
       </div>
       <!-- 18. Depression -->
       <div>
-        <label for="depression">18. How often do you feel depressed or down?</label><br />
-        <input type="range" id="depression" name="depression" list="values18" min="1" max="5" step="1" />
+        <label for="depressed_down">18. How often do you feel depressed or down?</label><br />
+        <input type="range" id="depressed_down" name="depressed_down" list="values18" min="1" max="5" step="1" />
         <datalist id="values18">
           <option value="1" label="1"></option>
           <option value="2" label="2"></option>
@@ -258,9 +268,10 @@
       </div>
       <!-- 19. Activity Interest -->
       <div>
-        <label for="activityInterest">19. How frequently does your interested in daily activities fluctuate?
+        <label for="fluctuate_interests">19. How frequently does your interested in daily activities fluctuate?
         </label><br />
-        <input type="range" id="activityInterest" name="purpose" list="values19" min="1" max="5" step="1" />
+        <input type="range" id="fluctuate_interests" name="fluctuate_interests" list="values19" min="1" max="5"
+          step="1" />
         <datalist id="values19">
           <option value="1" label="1"></option>
           <option value="2" label="2"></option>
@@ -271,8 +282,8 @@
       </div>
       <!-- 20. Sleep -->
       <div>
-        <label for="sleep">20. How often do you face issues regarding sleep?</label><br />
-        <input type="range" id="sleep" name="sleep" list="values20" min="1" max="5" step="1" />
+        <label for="sleep_issues">20. How often do you face issues regarding sleep?</label><br />
+        <input type="range" id="sleep_issues" name="sleep_issues" list="values20" min="1" max="5" step="1" />
         <datalist id="values20">
           <option value="1" label="1"></option>
           <option value="2" label="2"></option>
@@ -280,6 +291,10 @@
           <option value="4" label="4"></option>
           <option value="5" label="5"></option>
         </datalist>
+      </div>
+      <!-- Origin -->
+      <div>
+        <input type="text" name="origin" id="origin" value="Provo" hidden>
       </div>
 
       <div class="center">
@@ -293,7 +308,16 @@
   <footer>
     <p>&copy; Section 3-3 | All rights reserved</p>
   </footer>
+  <script>
+    function setTimestamp() {
+      var timestampInput = document.getElementById("timestamp");
+      var currentTimestamp = new Date().toISOString();
+      timestampInput.value = currentTimestamp;
+    }
 
+    // Attach the setTimestamp function to the form's submit event
+    document.getElementById("surveyForm").addEventListener("submit", setTimestamp);
+  </script>
   <script>
     document.querySelector(".menu-icon").addEventListener("click", function () {
       this.parentElement.classList.toggle("close");
