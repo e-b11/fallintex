@@ -48,29 +48,6 @@ app.get("/dashboard", (req, res) => {
   res.render("dashboardPage");
 });
 
-// app.get("/userLogin", (req, res) => {
-//   res.render("userLogin");
-// });
-
-// app.post("/userLogin", (req, res) => {
-//   const { username, password } = req.body;
-
-//   knex("user")
-//     .where({ username, password })
-//     .first()
-//     .then((user) => {
-//       if (user) {
-//         res.redirect("/");
-//       } else {
-//         res.status(401).send("Invalid username or password");
-//       }
-//     })
-//     .catch((error) => {
-//       console.error("Error querying database:", error);
-//       res.status(500).send("Internal Server Error");
-//     });
-// });
-
 //Admin routes
 app.get("/adminLogin", (req, res) => {
   res.render("adminLogin");
@@ -102,7 +79,7 @@ app.post("/adminLogin", (req, res) => {
 
 app.get("/viewsurveys", (req, res) => {
   //view survey results
-  if (req.cookies.access == "granted") {
+  if (req.cookies.access == "Granted") {
     // Query the 'responses' table to fetch all data
     knex
       .select(
@@ -129,15 +106,37 @@ app.get("/viewsurveys", (req, res) => {
   }
 });
 
-app.get("/searchresponse", (req, res) => {
-  const { category, value } = req.query;
+app.get("/searchresponse/:cat/:val", (req, res) => {
+  const { cat, val } = req.query;
   if (req.cookies.access == "granted") {
     // Query the 'responses' table to fetch all data
     let query;
     if (category == "surveyid" || category == "age") {
-      query = knex("responses").where(category, value);
+      query = knex
+        .select(
+          //query integers
+          "surveyid",
+          "timestamp",
+          "age",
+          "gender",
+          "rel_status",
+          "occ_status",
+          "avg_time_social"
+        )
+        .where(cat, val);
     } else {
-      query = knex("responses").whereLike(category, value);
+      query = knex
+        .select(
+          //query strings
+          "surveyid",
+          "timestamp",
+          "age",
+          "gender",
+          "rel_status",
+          "occ_status",
+          "avg_time_social"
+        )
+        .where("cat", "like", `%${val}%`);
     }
     query //the query was created by the if statement, execute that part then this is what you do with it.
       .then((surveyData) => {

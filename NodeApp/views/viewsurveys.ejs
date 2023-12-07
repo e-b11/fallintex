@@ -30,8 +30,8 @@
 
     <form action="/searchresponse" method="get">
 
-      <p><label for="selectCategory">Search by: </label>
-        <select id="selectCategory" name="selectedOption"> <!-- dropdown menu -->
+      <p><label for="cat">Search by: </label>
+        <select id="cat" name="cat"> <!-- dropdown menu -->
           <option value="surveyid">Survey ID</option>
           <option value="age">Age</option>
           <option value="gender">Gender</option>
@@ -40,7 +40,7 @@
           <option value="avg_time_social">Avg Time - Social Media</option>
         </select>
       <p>Value to search for: </p>
-      <input type="text" id="searchtext" name="selectedOption">
+      <input type="text" id="val" name="val">
       <button type="submit">Search</button></p>
     </form>
 
