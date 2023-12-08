@@ -206,7 +206,7 @@ app.get("/viewsurveys", (req, res) => {
         "origin"
       )
       .from("responses")
-      .limit(30)
+      .limit(2000)
       .then((surveyData) => {
         const pageuser = req.cookies.username;
         // Render the 'rviewsurveys' EJS file and pass the adminData to it
