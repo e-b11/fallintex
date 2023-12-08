@@ -164,7 +164,8 @@ footer {
   background-color: var(--indigo);
   color: white;
   padding: 2rem 1rem 3rem;
-  margin: 0;
+  margin-top: auto;
+  padding: 1rem 1rem 2rem;
 }
 
 /* Nav */
@@ -479,6 +480,26 @@ header nav a[href]:hover {
   border-radius: 3px;
 }
 
+.admin .button {
+  color: white;
+  /* border: 3px solid white; */
+  background-color: var(--soft-magenta);
+  text-decoration: none;
+  font-family: var(--base-font);
+  padding: 0.2em 0.4em;
+  display: inline-block;
+  transition: background-color 300ms ease, color 300ms ease;
+  /* margin-top: 1em; */
+}
+
+.admin .button:hover {
+  text-decoration: none;
+  font-weight: normal;
+  color: var(--soft-magenta);
+  background-color: white;
+  border: 3px solid var(--soft-magenta);
+}
+
 /* Media Queries */
 @media (min-width: 500px) {
   .panel {
@@ -512,6 +533,7 @@ header nav a[href]:hover {
 
   .card {
     flex: 1 1 40%;
+    margin: 0.5rem;
   }
 }
 

@@ -4,18 +4,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Data</title>
-  <link rel="stylesheet" href="styles/style.css" type="text/css">
+  <title>Edit User</title>
+  <!-- <link rel="stylesheet" href="styles/style.css" type="text/css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles/main.css" type="text/css">
+  <link rel="stylesheet" href="styles/admin.css" type="text/css">
 </head>
 
 <body>
- 
-  <header>
-    <a href="/">Home</a>
-    <a href="/survey">Take the Survey</a>
-    <a href="/adminLogin">Admin Login</a>
-    <a href="/viewadmins">Admin Info</a>
 
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/survey">SURVEY</a></li>
+        <li><a href="/adminLogin">ADMIN</a></li>
+        <li><a href="/viewsurveys">VIEW SURVEYS</a></li>
+        <li><a href="/viewadmins">ACCOUNTS</a></li>
+        <li><a href="/adminlogout">LOGOUT</a></li>
+
+      </ul>
+    </nav>
   </header>
 
   <main>
@@ -25,33 +38,39 @@
     <br>
     <tbody>
 
-                <form action="/editadmin" method="POST">
+      <form action="/editadmin" method="POST">
+        <table>
 
-                    <tr>
-                                
-                        <td><span id="username" name="username"><%= adminresult[0].username %></span></td>
-                        <td><%= adminresult[0].password %></td>
-                        <br><br>
+          <tr>
 
-                    
-                    <!-- <td>
+            <td><span id="username" name="username">
+                <%= adminresult[0].username %>
+              </span></td>
+            <td>
+              <%= adminresult[0].password %>
+            </td>
+            <br><br>
+
+
+            <!-- <td>
 
                     <label for="username">Old Username</label>
                     <input type="text" id="username" name="username">
                     </td> -->
-                    <td>
-                    <label for="newusername">New Username</label>
-                    <input type="text" id="newusername" name="newusername">
-                    </td>
-                    <td>
-                    <label for="newpassword">New Password</label>
-                    <input type="text" id="newpassword" name="newpassword"> 
-                    </td>
-                    <button type="submit">Update</button>
-                </form>
-              </td>
-            </tr>
-            <br>
+            <td>
+              <label for="newusername">New Username</label>
+              <input type="text" id="newusername" name="newusername">
+            </td>
+            <td>
+              <label for="newpassword">New Password</label>
+              <input type="text" id="newpassword" name="newpassword">
+            </td>
+            <button type="submit">Update</button>
+      </form>
+      </td>
+      </tr>
+      </table>
+      <br>
     </tbody>
 
   </main>

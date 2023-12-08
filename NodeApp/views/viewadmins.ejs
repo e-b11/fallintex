@@ -4,62 +4,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Data</title>
-  <link rel="stylesheet" href="styles/style.css" type="text/css">
+  <title>Account Management</title>
+  <!-- <link rel="stylesheet" href="styles/style.css" type="text/css"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles/main.css" type="text/css">
+  <link rel="stylesheet" href="styles/admin.css">
 </head>
 
 <body>
- 
-  <header>
-    <a href="/">Home</a>
-    <a href="/survey">Take the Survey</a>
-    <a href="/adminLogin">Admin Login</a>
-    <a href="/viewadmins">Admin Info</a>
 
+  <header>
+    <div class="menu-icon">
+      <svg viewbox="0 0 60 60" width="40px" height="40px">
+        <line x1="5%" y1="50%" x2="95%" y2="50%" />
+        <line x1="5%" y1="50%" x2="95%" y2="50%" />
+      </svg>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/">HOME</a></li>
+        <li><a href="/survey">SURVEY</a></li>
+        <li><a href="/adminLogin">ADMIN</a></li>
+        <li><a href="/viewsurveys">VIEW SURVEYS</a></li>
+        <li><a href="/viewadmins">ACCOUNTS</a></li>
+        <li><a href="/adminlogout">LOGOUT</a></li>
+
+      </ul>
+    </nav>
   </header>
 
+  <h1>Welcome <%= pageuser %>
+  </h1>
   <main>
-    <h1>Welcome <%= pageuser %></h1>
-    <br>
-    <p>Create User</p>
+    <h2>Create User: </h2>
     <form action="/createadmin" method="POST">
-        <label for="adminname">Username</label>
+      <div class="">
+        <label for="adminname">Username: </label><br>
         <input type="text" id="adminname" name="adminname">
-        <label for="adminpassword">Password</label>
+      </div>
+      <div class="">
+        <label for="adminpassword">Password: </label><br>
         <input type="text" id="adminpassword" name="adminpassword">
-        <button type="submit">Create</button>
+      </div>
+      <br>
+      <div class="">
+        <button type="submit" class="button">Create</button>
+      </div>
     </form>
     <br>
-    <thead>
+    <table class="table table-bordered">
+      <thead>
         <tr>
-            <td>Username</td>
-            <td>Password</td>
-            <td>Edit</td>
-            <td>Delete User</td>
-
+          <th>Username</th>
+          <th>Password</th>
+          <th>Edit</th>
+          <th>Delete User</th>
         </tr>
-    </thead>
-    <br>
-    <tbody>
-        <% for(let icount = 0; icount< adminData.length; icount++) { %>
-            <tr>
-            <td><%= adminData[icount].username %></td>
-            <td><%= adminData[icount].password %></td>
+      </thead>
+      <tbody>
+        <% for(let icount=0; icount< adminData.length; icount++) { %>
+          <tr>
             <td>
-                <form action="/editadmin/<%= adminData[icount].username %>" method="GET">
-                    <button type="submit">Edit</button>
-                  </form>
-              </td>
-              <td>
-                <form action="/deleteadmin/<%= adminData[icount].username %>" method="POST">
-                  <button type="submit">Delete</button>
-                </form>
-              </td>
-            </tr>
-            <br>
+              <%= adminData[icount].username %>
+            </td>
+            <td>
+              <%= adminData[icount].password %>
+            </td>
+            <td>
+              <form action="/editadmin/<%= adminData[icount].username %>" method="GET">
+                <button type="submit" class="button">Edit</button>
+              </form>
+            </td>
+            <td>
+              <form action="/deleteadmin/<%= adminData[icount].username %>" method="POST">
+                <button type="submit" class="button">Delete</button>
+              </form>
+            </td>
+          </tr>
           <% }; %>
-    </tbody>
-
+      </tbody>
+    </table>
   </main>
 
   <footer>

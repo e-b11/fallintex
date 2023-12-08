@@ -149,7 +149,6 @@ app.post("/surveySubmit", (req, res) => {
     })
     .then(() => {
       res.redirect("/");
-      alert("Thanks for filling out our survey!");
     })
     .catch((error) => {
       console.error("Error processing the form:", error);
@@ -174,8 +173,8 @@ app.post("/adminLogin", (req, res) => {
     .first()
     .then((user) => {
       if (user) {
-        res.cookie("username", username, { maxAge: 9000000, httpOnly: true }); //creates a cookie 'username' and assigns the value of the username
-        res.cookie("access", "granted", { maxAge: 9000000, httpOnly: true }); //creates a cookie that sets access privileges to granted
+        res.cookie("username", username, { maxAge: 900000, httpOnly: true }); //creates a cookie 'username' and assigns the value of the username
+        res.cookie("access", "granted", { maxAge: 900000, httpOnly: true }); //creates a cookie that sets access privileges to granted
 
         // populate the data for all admin users and send it to the admin page
 
@@ -219,6 +218,60 @@ app.get("/viewsurveys", (req, res) => {
       });
   } else {
     res.send("You do not have access to this page");
+  }
+});
+
+app.get("/viewspecificsurvey/:id", (req, res) => {
+  if (req.cookies.access == "granted") {
+    const responsesPromise = knex
+      .select(
+        "surveyid",
+        "timestamp",
+        "age",
+        "gender",
+        "rel_status",
+        "occ_status",
+        "social_media_useage",
+        "avg_time_social",
+        "use_no_purpose",
+        "distracted_social",
+        "restless_no_media",
+        "distracted_general",
+        "bothered_worries",
+        "difficult_concentrate",
+        "compare_successful",
+        "feeling_comparison",
+        "validation_social",
+        "depressed_down",
+        "fluctuate_interests",
+        "sleep_issues",
+        "origin"
+      )
+      .from("responses")
+      .where("surveyid", req.params.id);
+
+    const platformsPromise = knex
+      .select("surveyid", "platformid")
+      .from("survey_platforms")
+      .where("surveyid", req.params.id);
+
+    const affiliationsPromise = knex
+      .select("surveyid", "affiliationid")
+      .from("survey_affiliations")
+      .where("surveyid", req.params.id);
+
+    Promise.all([responsesPromise, platformsPromise, affiliationsPromise])
+      .then(([responses, platforms, affiliations]) => {
+        res.render("specificsurvey", {
+          surveyData: responses,
+          platformData: platforms,
+          affiliationData: affiliations,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json({ err });
+      });
   }
 });
 
@@ -362,6 +415,15 @@ app.post("/editadmin", (req, res) => {
   } else {
     res.send("You Don't have access to this page");
   }
+});
+
+// Admin logout
+app.get("/adminLogout", (req, res) => {
+  //remove admin cookies
+  res.cookie("access", "not_granted", { maxAge: 9000, httpOnly: true }); //creates a cookie that sets access privileges to granted
+
+  //req.cookies.access = "not_granted";
+  res.redirect("/");
 });
 
 //Set up port/listening
