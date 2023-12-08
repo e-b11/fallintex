@@ -6,12 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>View</title>
   <!-- <link rel="stylesheet" href="styles/style.css" type="text/css"> -->
-  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script> -->
-  <link rel="stylesheet" type="text/css" href="styles/main.css">
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/admin.css" type="text/css">
 </head>
 
 <body>
@@ -37,80 +38,229 @@
   <h1>View Survey </h1>
   <main>
     <% for (let index=0; index < surveyData.length; index++){ %>
-      <p>Survey ID: <%= surveyData[index].surveyid %>
-      </p>
-      <p>Timestamp: <%= surveyData[index].timestamp %>
-      </p>
-      <p>Origin: <%= surveyData[index].origin %>
-      </p>
-      <p>1. Enter your age: <%= surveyData[index].age %>
-      </p>
-      <p>2. Select a Gender: <%= surveyData[index].gender %>
-      </p>
-      <p>3. Select a Relationship Status: <%= surveyData[index].rel_status %>
-      </p>
-      <p>4. Select an Occupation Status: <%= surveyData[index].occ_status %>
-      </p>
-      <!-- Organization -->
-      <p>5. What type of organizations are you affiliated with?:
-      </p>
+      <h3>Survey ID: <%= surveyData[index].surveyid %>
+      </h3>
+      <table class="table table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th>Question</th>
+            <th>Answer</th>
+          </tr>
+        </thead>
 
-      <% for (let org=0; org < affiliationData.length; org++){ %>
-        <p>
-          <%= affiliationData[org].affiliationid %>
-        </p>
-        <% } %>
-          <p>6. Do you use Social Media?: <%= surveyData[index].social_media_useage %>
-          </p>
-          <!-- platform -->
-          <p>7. What social media platforms do you commonly use?:</p>
-          <% for (let platform=0; platform < platformData.length; platform++){ %>
-            <p>
-              <%= platformData[platform].platformid %>
-            </p>
+        <tbody>
+          <tr>
+            <td>Survey ID: </td>
+            <td>
+              <%= surveyData[index].surveyid %>
+            </td>
+          </tr>
+          <tr>
+            <td>Timestamp: </td>
+            <td>
+              <%= surveyData[index].timestamp %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Origin: </td>
+            <td>
+              <%= surveyData[index].origin %>
+            </td>
+          </tr>
+          <tr>
+            <td>1. Enter your age: </td>
+            <td>
+              <%= surveyData[index].age %>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td>2. Select a Gender: </td>
+            <td>
+              <%= surveyData[index].gender %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>3. Select a Relationship Status: </td>
+            <td>
+              <%= surveyData[index].rel_status %>
+            </td>
+          </tr>
+
+
+          <tr>
+            <td>4. Select an Occupation Status: </td>
+            <td>
+              <%= surveyData[index].occ_status %>
+            </td>
+          </tr>
+
+          <!-- Organization -->
+
+          <tr>
+            <td>What type of organizations are you affiliated with?:</td>
+            <td></td>
+          </tr>
+          <% for (let org=0; org < affiliationData.length; org++){ %>
+            <tr>
+              <td>Organization Affiliation ID</td>
+              <td>
+                <%= affiliationData[org].affiliationid %>
+              </td>
+            </tr>
             <% } %>
 
-              <p>8. What is the average time you spend on social media every day?: <%= surveyData[index].avg_time_social
-                  %>
-              </p>
-              <p>9. How often do you find yourself using social media without a specific
-                purpose?: <%= surveyData[index].use_no_purpose %>
-              </p>
-              <p>10. How often do you get distracted by social media when you are busy doing
-                something?: <%= surveyData[index].distracted_social %>
-              </p>
-              <p>11. Do you feel restless if you haven’t used social media in a
-                while?: <%= surveyData[index].restless_no_media %>
-              </p>
-              <p>12. How easily distracted are you?: <%= surveyData[index].distracted_general %>
-              </p>
-              <p>13. How much are you bothered by worries?: <%= surveyData[index].bothered_worries %>
-              </p>
-              <p>14. Do you find it difficult to concentrate on things?: <%= surveyData[index].difficult_concentrate %>
-              </p>
-              <p>15. How often do you compare yourself to other successful people through the use
-                of social
-                media?: <%= surveyData[index].compare_successful %>
-              </p>
-              <p>16. Following the previous question, how do you feel about these comparisons,
-                generally
-                speaking?: <%= surveyData[index].feeling_comparison %>
-              </p>
-              <p>17. How often do you look to seek validation from features of social
-                media?: <%= surveyData[index].validation_social %>
-              </p>
-              <p>18. How often do you feel depressed or down?: <%= surveyData[index].depressed_down %>
-              </p>
-              <p>19. How frequently does your interested in daily activities fluctuate?: <%=
-                  surveyData[index].fluctuate_interests %>
-              </p>
-              <p>20. How often do you face issues regarding sleep?: <%= surveyData[index].sleep_issues %>
-              </p>
+              <tr>
+                <td>6. Do you use Social Media?: </td>
+                <td>
+                  <%= surveyData[index].social_media_useage %>
+                </td>
+              </tr>
 
-              <% }; %>
+              <!-- platform -->
+              <tr>
+                <td>7. What social media platforms do you commonly use?:</td>
+                <td></td>
+              </tr>
+              <% for (let platform=0; platform < platformData.length; platform++){ %>
+                <tr>
+                  <td>Platform ID:</td>
+                  <td>
+                    <%= platformData[platform].platformid %>
+                  </td>
+                </tr>
+
+                <% } %>
+
+                  <tr>
+                    <td>8. What is the average time you spend on social media every day?: </td>
+                    <td>
+                      <%= surveyData[index].avg_time_social %>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>9. How often do you find yourself using social media without a specific
+                      purpose?: </td>
+                    <td>
+                      <%= surveyData[index].use_no_purpose %>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>10. How often do you get distracted by social media when you are busy doing
+                      something?: </td>
+                    <td>
+                      <%= surveyData[index].distracted_social %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>11. Do you feel restless if you haven’t used social media in a
+                      while?: </td>
+                    <td>
+                      <%= surveyData[index].restless_no_media %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>12. How easily distracted are you?: </td>
+                    <td>
+                      <%= surveyData[index].distracted_general %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>13. How much are you bothered by worries?: </td>
+                    <td>
+                      <%= surveyData[index].bothered_worries %>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>14. Do you find it difficult to concentrate on things?: </td>
+                    <td>
+                      <%= surveyData[index].difficult_concentrate %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>15. How often do you compare yourself to other successful people through the use
+                      of social
+                      media?: </td>
+                    <td>
+                      <%= surveyData[index].compare_successful %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>16. Following the previous question, how do you feel about these comparisons,
+                      generally
+                      speaking?: </td>
+                    <td>
+                      <%= surveyData[index].feeling_comparison %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>17. How often do you look to seek validation from features of social
+                      media?: </td>
+                    <td>
+                      <%= surveyData[index].validation_social %>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>18. How often do you feel depressed or down?: </td>
+                    <td>
+                      <%= surveyData[index].depressed_down %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>19. How frequently does your interested in daily activities fluctuate?: </td>
+                    <td>
+                      <%= surveyData[index].fluctuate_interests %>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>20. How often do you face issues regarding sleep?: </td>
+                    <td>
+                      <%= surveyData[index].sleep_issues %>
+                    </td>
+                  </tr>
+
+
+        </tbody>
+      </table>
+      <% }; %>
+
 
   </main>
 
+  <footer>
+    <p>&copy; Section 3-3 | All rights reserved</p>
+  </footer>
+  <script>
+    // JavaScript to handle header collapse on scroll
+    const header = document.querySelector('header');
+    let isHovered = false;
+
+    header.addEventListener('mouseenter', () => {
+      isHovered = true;
+    });
+
+    header.addEventListener('mouseleave', () => {
+      isHovered = false;
+    });
+
+    window.addEventListener('scroll', () => {
+      if (!isHovered) {
+        const scrollY = window.scrollY;
+        const maxPadding = 20; // Adjust as needed
+
+        // Collapse the header on scroll
+        header.style.padding = Math.max(maxPadding - scrollY, 5) + 'px';
+      }
+    });
+  </script>
 </body>
 
 </html>

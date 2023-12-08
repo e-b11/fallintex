@@ -500,6 +500,21 @@ header nav a[href]:hover {
   border: 3px solid var(--soft-magenta);
 }
 
+.tableauPlaceholder {
+  overflow: visible !important;
+}
+
+html {
+  overflow-y: auto !important;
+}
+
+.centersvg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Media Queries */
 @media (min-width: 500px) {
   .panel {

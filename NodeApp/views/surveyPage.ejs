@@ -7,6 +7,7 @@
   <title>Survey</title>
   <!-- <link rel="stylesheet" href="/styles/style.css" type="text/css"> -->
   <link rel="stylesheet" href="styles/main.css" type="text/css">
+  <link rel="stylesheet" href="styles/admin.css" type="text/css">
   <link rel="stylesheet" href="styles/survey.css" type="text/css">
 </head>
 
@@ -27,16 +28,17 @@
     </nav>
   </header>
 
+  <h1>Provo Social Media Health and Usage Survey</h1>
   <main class=".survey">
 
     <form action="/surveySubmit" method="POST" id="surveyForm" name="surveyForm">
-      <h1>Survey</h1>
-      <h3>The first portion of this survey is to discover how you use social media.</h3>
+      <h3 style="margin-top: 0.5rem;">The first portion of this survey is to discover how you use social media.</h3>
       <!-- 1. Age -->
       <div>
         <label for="age">1. Enter your age:</label>
         <input type="number" id="age" name="age" min="0" max="100" step="1" required autofocus>
       </div>
+      <br>
       <!-- 2. Gender -->
       <div>
         <label for="listGender">2. Select a Gender:</label>
@@ -46,6 +48,7 @@
           <option value="Other">Other</option>
         </select>
       </div>
+      <br>
       <!-- 3. Relationship -->
       <div>
         <label for="rel_status">3. Select a Relationship Status:</label>
@@ -56,6 +59,7 @@
           <option value="Divorced">Divorced</option>
         </select>
       </div>
+      <br>
       <!-- 4. Occupation -->
       <div>
         <label for="occ_status">4. Select an Occupation Status:</label>
@@ -67,52 +71,69 @@
           <option value="Retired">Retired</option>
         </select>
       </div>
+      <br>
       <!-- 5. Organization Affiliation -->
       <div>
         <label>5. What type of organizations are you affiliated with?</label><br>
         <input type="checkbox" name="affiliationValues[]" id="school" value="1">
         <label for="school">School</label>
+        <br>
         <input type="checkbox" name="affiliationValues[]" id="university" value="2">
         <label for="university">University</label>
+        <br>
         <input type="checkbox" name="affiliationValues[]" id="private" value="3">
         <label for="private">Private</label>
+        <br>
         <input type="checkbox" name="affiliationValues[]" id="company" value="4">
         <label for="company">Company</label>
+        <br>
         <input type="checkbox" name="affiliationValues[]" id="government" value="5">
         <label for="government">Government</label>
       </div>
+      <br>
       <!-- 6. Social Media Use -->
       <div>
         <label>6. Do you use Social Media?</label><br>
         <input type="radio" name="social_media_useage" id="yes" value="Yes">
         <label for="yes">Yes</label>
+        <br>
         <input type="radio" name="social_media_useage" id="no" value="No">
         <label for="no">No</label>
       </div>
+      <br>
       <!-- 7. Platforms -->
       <div>
 
         <label>7. What social media platforms do you commonly use?</label><br>
         <input type="checkbox" name="checkboxValues[]" id="facebook" value="1">
         <label for="facebook">Facebook</label>
+        <br>
         <input type="checkbox" name="checkboxValues[]" id="twitter" value="7">
         <label for="twitter">Twitter</label>
+        <br>
         <input type="checkbox" name="checkboxValues[]" id="instagram" value="2">
         <label for="instagram">Instagram</label>
+        <br>
         <input type="checkbox" name="checkboxValues[]" id="youtube" value="8">
         <label for="youtube">YouTube</label>
+        <br>
         <input type="checkbox" name="checkboxValues[]" id="discord" value="0">
         <label for="discord">Discord</label>
+        <br>
         <input type="checkbox" name="checkboxValues[]" id="reddit" value="4">
         <label for="reddit">Reddit</label>
+        <br>
         <input type="checkbox" name="checkboxValues[]" id="pinterest" value="3">
         <label for="pinterest">Pinterest</label>
+        <br>
         <input type="checkbox" name="checkboxValues[]" id="tiktok" value="6">
         <label for="tiktok">TikTok</label>
+        <br>
         <input type="checkbox" name="checkboxValues[]" id="snapchat" value="5">
         <label for="snapchat">Snapchat</label>
-      </div>
 
+      </div>
+      <br>
       <!-- 8. Average Time -->
       <div>
         <label for="avg_time_social">8. What is the average time you spend on social media every day?</label>
@@ -125,6 +146,7 @@
           <option value="More than 5 hours">More than 5 hours</option>
         </select>
       </div>
+
       <h3>For the following questions, please rate from 1 to 5 with 1 being very low and 5 being very high.</h3>
       <!-- 9. Purpose -->
       <div>
@@ -139,6 +161,7 @@
           <option value="5" label="5"></option>
         </datalist>
       </div>
+      <br>
       <!-- 10. Distracted Busy-->
       <div>
         <label for="distracted_social">10. How often do you get distracted by social media when you are busy doing
@@ -153,6 +176,7 @@
           <option value="5" label="5"></option>
         </datalist>
       </div>
+      <br>
 
       <!-- 11. Restless -->
       <div>
@@ -167,6 +191,7 @@
           <option value="5" label="5"></option>
         </datalist>
       </div>
+      <br>
       <!-- 12. Easily Distracted -->
       <div>
         <label for="distracted_general">12. How easily distracted are you?</label><br />
@@ -180,6 +205,7 @@
           <option value="5" label="5"></option>
         </datalist>
       </div>
+      <br>
       <!-- 13. Bothered Worries -->
       <div>
         <label for="bothered_worries">13. How much are you bothered by worries?</label><br />
@@ -192,6 +218,7 @@
           <option value="5" label="5"></option>
         </datalist>
       </div>
+      <br>
       <!-- 14. Concentration -->
       <div>
         <label for="difficult_concentrate">14. Do you find it difficult to concentrate on things?</label><br />
@@ -205,6 +232,7 @@
           <option value="5" label="5"></option>
         </datalist>
       </div>
+      <br>
       <!-- 15. Compare -->
       <div>
         <label for="compare_successful">15. How often do you compare yourself to other successful people through the use
@@ -221,6 +249,7 @@
           <option value="5" label="5"></option>
         </datalist>
       </div>
+      <br>
       <!-- 16. Comparison Feelings -->
       <div>
         <label for="feeling_comparison">16. Following the previous question, how do you feel about these comparisons,
@@ -237,6 +266,7 @@
           <option value="5" label="5"></option>
         </datalist>
       </div>
+      <br>
       <!-- 17. Validation -->
       <div>
         <label for="validation_social">17. How often do you look to seek validation from features of social
@@ -250,6 +280,7 @@
           <option value="5" label="5"></option>
         </datalist>
       </div>
+      <br>
       <!-- 18. Depression -->
       <div>
         <label for="depressed_down">18. How often do you feel depressed or down?</label><br />
@@ -262,6 +293,7 @@
           <option value="5" label="5"></option>
         </datalist>
       </div>
+      <br>
       <!-- 19. Activity Interest -->
       <div>
         <label for="fluctuate_interests">19. How frequently does your interested in daily activities fluctuate?
@@ -276,6 +308,7 @@
           <option value="5" label="5"></option>
         </datalist>
       </div>
+      <br>
       <!-- 20. Sleep -->
       <div>
         <label for="sleep_issues">20. How often do you face issues regarding sleep?</label><br />
@@ -294,7 +327,7 @@
       </div>
 
       <div class="center">
-        <button class="button " type="submit">Submit</button>
+        <button class="button " type="submit" style="border-color: none;">Submit</button>
       </div>
 
     </form>
