@@ -1,0 +1,57 @@
+:root {
+  --indigo: #273b37;
+  --misty-violet: #3e2a35;
+  --soft-magenta: #5e8684;
+  --bright-rose: #94c9c6;
+  --sandy: #c4d7f2;
+  --highlight: #e7749a;
+  --color-svg: white;
+  --color-svg-hover: #364573;
+  --color-svg-close: white;
+  --special-font: "Montserrat", sans-serif;
+  --base-font: "Hind", sans-serif;
+}
+
+.button {
+  color: white;
+  /* border: 3px solid white; */
+  background-color: var(--soft-magenta);
+  text-decoration: none;
+  font-family: var(--base-font);
+  padding: 0.2em 0.4em;
+  display: inline-block;
+  transition: background-color 300ms ease, color 300ms ease;
+  margin: 0em;
+}
+
+.button:hover {
+  text-decoration: none;
+  font-weight: normal;
+  color: var(--soft-magenta);
+  background-color: white;
+  border: 3px solid var(--soft-magenta);
+}
+
+h1 {
+  background-color: var(--indigo);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin: 0rem 0 1rem 0;
+  text-transform: uppercase;
+  font-family: var(--special-font);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0 1rem 0;
+}
+
+/* .margin {
+  margin: 0 0.5rem 0 0.5rem;
+} */
+
+main {
+  margin-bottom: 2rem;
+}
